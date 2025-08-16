@@ -1,6 +1,6 @@
 # Change baseurl before deploy
 baseurl = "https://blog.onani0721.top"
-languageCode = "zh-cn"
+languageCode = "en"
 title = "Epiphany0v0"
 
 # Theme i18n support
