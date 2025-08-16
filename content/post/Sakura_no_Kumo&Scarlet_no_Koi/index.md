@@ -14,7 +14,7 @@ category:
 
 ## 剧透警告
 
-<img src="https://files.catbox.moe/is03tk.jpg" />
+![/Sakura_no_Kumo&Scarlet_no_Koi1](/Sakura_no_Kumo&Scarlet_no_Koi1.jpg)
 
 ## 通关概况
 - 游戏线路：远子、莲、梅丽莎、所长四位女主，一周目为共通线强制Bad Ending，之后四条线分别对应四个周目，顺序不可调换
@@ -39,7 +39,8 @@ category:
 总的来说，这部720p的“剧情作”根本不合格，bgm上7.7分的评价也有些虚高了，剧情打得过9nine的评价也有些过了，还有什么剧情锁、一周目强行be、hcg集中爆发等等，我也懒得吐槽了，冬茜的写作水平也就这样了，已拉黑。
 
 最后吐槽一下为什么阿良良木不能推啊！
-<img src="https://files.catbox.moe/pv3lij.jpg" />
+![/Sakura_no_Kumo&Scarlet_no_Koi2](/Sakura_no_Kumo&Scarlet_no_Koi2.jpg)
+
 
 
 
