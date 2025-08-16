@@ -1,3 +1,14 @@
+---
+title: "About"
+date: 2025-08-16
+layout: "about"
+slug: "about"
+menu:
+    main:
+        weight: 2
+        params: 
+            icon: about
+---
 # Hello, World!
 你好，访客！欢迎来到我的数字角落。
 我是一名正在为高考奋战的高中生，也是一个对代码、数码和ACGN文化充满热情的探索者。
