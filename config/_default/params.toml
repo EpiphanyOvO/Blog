@@ -90,7 +90,7 @@ admin = "Epiphany0v0"
 adminLabel = ""
 
 [comments.utterances]
-repo = "Blog"
+repo = "Epiphanyovo/Blog"
 issueTerm = "pathname"
 label = ""
 
