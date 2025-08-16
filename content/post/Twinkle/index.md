@@ -4,9 +4,8 @@ date: 2025-08-16
 description: 朋友的梦呓
 image: cover.jpg
 tags: 
-    - twinkle
-categories: 
-     - twinkle
+    - 灵光一闪
+    - 梦呓
 ---
 
 # 论古希腊亚里士多德对21世纪在资本主义社会中左翼法西斯党派中深受霸权主义影响的基督教堂向共产主义转变
@@ -60,6 +59,7 @@ categories:
 
 
 ### 注： 需要讨论交流 +q 2986890585，解释权归博主朋友
+
 
 
 
