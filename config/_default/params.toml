@@ -77,13 +77,13 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "disqus"
+provider = "disqusjs"
 
 [comments.disqusjs]
-shortname = ""
+shortname = "epiphany0v0s-blog"
 apiUrl = ""
-apiKey = ""
-admin = ""
+apiKey = "2II6PCJss58mWdjyXwRBl0ZFenYftiXT1doZKOxkOe42k21rvFG0cJ2ga895YAor"
+admin = "Epiphany0v0"
 adminLabel = ""
 
 [comments.utterances]
