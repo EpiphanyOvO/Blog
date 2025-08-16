@@ -8,7 +8,6 @@ tags:
      - twinkle
 categories:
          - games
-         - twinkle
 ---
 # 《さくらの雲＊スカアレットの恋》玩后感
 
@@ -40,6 +39,7 @@ categories:
 
 最后吐槽一下为什么阿良良木不能推啊！
 ![/Sakura_no_Kumo&Scarlet_no_Koi2](/Sakura_no_Kumo&Scarlet_no_Koi2.jpg)
+
 
 
 
