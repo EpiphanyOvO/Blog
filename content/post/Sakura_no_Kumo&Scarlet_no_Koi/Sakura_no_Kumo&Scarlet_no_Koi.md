@@ -1,11 +1,14 @@
 ---
 title: 《さくらの雲＊スカアレットの恋》玩后感
-published: 2025-08-16
+date: 2025-08-16
 description: 一点对本作的想法，予以保留。
-image: ./cover.jpg
-tags: [game, twinkle]
-category: Games
-draft: false
+image: cover.jpg
+tags:
+     - games
+     - twinkle
+category:
+         - games
+         - twinkle
 ---
 # 《さくらの雲＊スカアレットの恋》玩后感
 
@@ -37,6 +40,7 @@ draft: false
 
 最后吐槽一下为什么阿良良木不能推啊！
 <img src="https://files.catbox.moe/pv3lij.jpg" />
+
 
 
 
