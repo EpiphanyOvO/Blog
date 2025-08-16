@@ -1,11 +1,12 @@
 ---
 title: 论古希腊亚里士多德对21世纪在资本主义社会中左翼法西斯党派中深受霸权主义影响的基督教堂向共产主义转变
-published: 2025-08-16
+date: 2025-08-16
 description: 朋友的一点思考
-image: ./cover.jpg
-tags: [twinkle]
-category: Twinkle
-draft: false
+image: cover.jpg
+tags: 
+    - twinkle
+category: 
+     - twinkle
 ---
 
 # 论古希腊亚里士多德对21世纪在资本主义社会中左翼法西斯党派中深受霸权主义影响的基督教堂向共产主义转变
@@ -59,6 +60,7 @@ draft: false
 
 
 ### 注： 需要讨论交流 +q 2986890585,博主朋友的说的梦话，代为发布，解释权归博主朋友
+
 
 
 
