@@ -4,9 +4,9 @@ date: 2025-08-16
 description: 一点对本作的想法，予以保留。
 image: cover.jpeg
 tags:
-     - games
+     - 游戏
 categories:
-     - games
+     - 游戏
 ---
 # 《さくらの雲＊スカアレットの恋》玩后感
 
@@ -37,6 +37,7 @@ categories:
 
 最后吐槽一下为什么阿良良木不能推啊！
 ![Sakura_no_Kumo&Scarlet_no_Koi2](/Sakura_no_Kumo&Scarlet_no_Koi2.jpg)
+
 
 
 
