@@ -5,7 +5,7 @@ description: 朋友的一点思考
 image: cover.jpg
 tags: 
     - twinkle
-category: 
+categories: 
      - twinkle
 ---
 
@@ -60,6 +60,7 @@ category:
 
 
 ### 注： 需要讨论交流 +q 2986890585,博主朋友的说的梦话，代为发布，解释权归博主朋友
+
 
 
 
