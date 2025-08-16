@@ -2,7 +2,7 @@
 title: ZTZ-99
 date: 2025-08-16
 description: 朋友的科普文章
-image: cover.jpg
+image: ./cover.jpg
 tags: 
     - twinkle
 category: 
@@ -30,4 +30,5 @@ category:
 *   **1992年**：北方工业公司617厂推出了4辆第三代坦克原型车。
 *   **1996年5月**：第三代坦克改进型原型车移交给军方进行试验，并将该坦克命名为ZTZ-99式主战坦克。
 *   从此，99式主-战坦克正式定型并投入生产。
+
 
