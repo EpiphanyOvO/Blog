@@ -80,7 +80,7 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "disqusjs"
+provider = "utterances"
 
 [comments.disqusjs]
 shortname = "epiphany0v0s-blog"
@@ -90,7 +90,7 @@ admin = "Epiphany0v0"
 adminLabel = ""
 
 [comments.utterances]
-repo = ""
+repo = "Blog"
 issueTerm = "pathname"
 label = ""
 
