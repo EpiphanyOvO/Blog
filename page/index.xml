@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Epiphany0v0's Blog</title><link>https://blog.onani0721.top/page/</link><description>Recent content in Pages on Epiphany0v0's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 16 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.onani0721.top/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://blog.onani0721.top/about/</link><pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/about/</guid><description>&lt;h1 id="hello-world">Hello, World!
+&lt;/h1>&lt;p>你好，访客！欢迎来到我的数字角落。
+我是一名正在为高考奋战的高中生，也是一个对代码、数码和ACGN文化充满热情的探索者。&lt;/p>
+&lt;h2 id="学习经历">学习经历
+&lt;/h2>&lt;p>曾经梦想成为一名Oier，但由于环境因素不得不放弃了。现在，我比较熟悉的是Python和C语言，并且正在学习HTML与CSS，希望能亲手构建出有趣的网页应用。对我来说，代码不仅是工具，更是探索与创造的媒介。&lt;/p>
+&lt;h2 id="代码之外">代码之外
+&lt;/h2>&lt;p>当我不在学习或写代码时，通常会沉浸在ACGN的奇妙世界里。动漫、漫画、游戏和轻小说是我的精神食粮，也是我灵感的来源之一。
+此外，我还是个典型的“数据仓鼠症”患者，热衷于收集和整理各种数字资源，看着硬盘被填满会很有成就感。&lt;/p>
+&lt;h2 id="关于这个博客">关于这个博客
+&lt;/h2>&lt;p>建立这个博客，初衷是记录我在探索过程中的思考与进步。在这里，你可能会看到：&lt;/p>
+&lt;ul>
+&lt;li>编程学习笔记和项目分享&lt;/li>
+&lt;li>对数码产品的体验与见解&lt;/li>
+&lt;li>偶尔的ACGN杂谈&lt;/li>
+&lt;li>博主朋友的文章&lt;/li>
+&lt;li>&amp;hellip;以及任何我感兴趣的新鲜事物&lt;/li>
+&lt;/ul>
+&lt;p>由于学业繁重，博客的更新频率会比较“佛系”，但我会尽力在间隙分享我的所得所想。&lt;/p>
+&lt;h2 id="联系我">联系我
+&lt;/h2>&lt;p>如果你想与我交流，或者只是打个招呼，可以通过以下方式找到我：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Bangumi:&lt;/strong> &lt;a class="link" href="https://bgm.tv/user/epiphany0721" target="_blank" rel="noopener"
+>https://bgm.tv/user/epiphany0721&lt;/a>&lt;/li>
+&lt;li>&lt;strong>邮箱:&lt;/strong> &lt;a class="link" href="mailto:epiphany0721@foxmail.com" >epiphany0721@foxmail.com&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>感谢你的来访，让我们一起在探索中不断进步！&lt;/p></description></item><item><title>Archives</title><link>https://blog.onani0721.top/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/archives/</guid><description/></item><item><title>Links</title><link>https://blog.onani0721.top/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item><item><title>Search</title><link>https://blog.onani0721.top/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/search/</guid><description/></item></channel></rss>
