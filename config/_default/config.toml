@@ -12,7 +12,7 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 
 # Change it to your Disqus shortname before using
-disqusShortname = "epiphany0v0s-blog"
+disqusShortname = ""
 
 [pagination]
 pagerSize = 5
