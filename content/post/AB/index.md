@@ -1,6 +1,7 @@
 ---
 title: 当故事落下帷幕
 date: 2025-08-30
+image: Ambitious mission.jpg
 description: 深入聊聊那种名为“后系列抑郁”的奇妙体验
 tags:
      - 游戏
@@ -38,6 +39,7 @@ categories:
 ---
 
 至于《Ambitious Mission》的感想？我们下次再聊。
+
 
 
 
