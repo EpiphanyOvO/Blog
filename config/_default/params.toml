@@ -69,7 +69,6 @@ src = "img/baner.jpg"
 
 [colorScheme]
 toggle = true
-默认 = "auto"
 
 [imageProcessing.cover]
 enabled = true
