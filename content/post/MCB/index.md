@@ -1,3 +1,4 @@
+---
 title: 告别支付失败！先版本最强外币卡测评
 date: 2025-11-29
 image: MCB.jpg
@@ -62,4 +63,5 @@ categories:
 *   MZ金融攻略 (https://charliezane.site)
 *   知乎银行卡专栏
 *   小黑盒相关帖子
+
 *   L站相关帖子
