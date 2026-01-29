@@ -27,6 +27,7 @@ menu:
 - 最喜欢音乐类型
 	- V家：MiKu
     - 车万同人曲
+    - 各种ACG作品里的主题曲等
 - 最喜欢的运动：乒乓球
 - 编程 (Sorted by proficiency)：
 	- Python
