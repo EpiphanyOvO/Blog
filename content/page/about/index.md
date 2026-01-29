@@ -23,7 +23,7 @@ menu:
 	- PC端：Minecraft、CS2
 	- 手游：碧蓝档案(日服)
 	- 阴游：OSU!m、malody、djmax、Quaver、Musedash、节奏大师、Phigros、啤酒烧烤、SDVX、IIDX、中二节奏
-- 最喜欢看的番：《Re：从零开始的异世界生活》、《时钟机关之星》
+- 最喜欢看的番：《Re：从零开始的异世界生活》(熟读所有作品以及衍生作)、《时钟机关之星》
 - 最喜欢音乐类型
 	- V家：MiKu
     - 车万同人曲
