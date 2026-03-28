@@ -1,1 +1,15 @@
+/* 默认状态：背景和文字都是黑色 */
+.spoiler {
+    background-color: #222; /* 建议用深灰色，比纯黑更有质感 */
+    color: #222;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 增加一个丝滑的过渡动画 */
+    border-radius: 2px;
+    padding: 0 2px;
+}
 
+/* 鼠标悬停状态：文字变白（或者透明背景） */
+.spoiler:hover {
+    color: #fff;
+    background-color: transparent;
+}
