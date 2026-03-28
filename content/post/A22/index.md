@@ -1,6 +1,6 @@
 ---
 title: A22 Churchill VII
-date: 2026-03-29
+date: 2026-03-27
 image: A22.jpg
 description: 赤石大王心得总结
 tags: 
@@ -12,9 +12,8 @@ categories:
      - 游戏
 ---
 
-步兵坦克 Mk IV 丘吉尔 VII
+#步兵坦克 Mk IV 丘吉尔 VII
 
----
 
 **步兵坦克 Mk IV 丘吉尔 VII**（载具ID：uk_a_22f_mk_7_churchill）
 
