@@ -29,11 +29,12 @@ menu:
 - 目前在玩的游戏
 	- PC端：Minecraft、CS2
 	- 手游：碧蓝档案(日服)
-	- 阴游（按游玩时长排序）：OSU!m、malody、djmax、Quaver、Musedash、节奏大师、Phigros、啤酒烧烤、SDVX、BMS、IIDX、maimaidx、中二节奏
+	- 阴游（按游玩时长排序）：OSU!m、Malody、Djmax、Musedash、节奏大师、Phigros、啤酒烧烤、SDVX、IIDX
 - 最喜欢看的番：《Re：从零开始的异世界生活》、《时钟机关之星》
 - 最喜欢音乐类型
 	- V家：MiKu
     - 车万同人曲
+    - 纯音乐
     - 各种ACG作品里的主题曲等
 - 最喜欢的运动：乒乓球
 - 其他：
