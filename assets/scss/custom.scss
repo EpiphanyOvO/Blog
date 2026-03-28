@@ -1,15 +1,18 @@
-/* 默认状态：背景和文字都是黑色 */
 .spoiler {
-    background-color: #222; /* 建议用深灰色，比纯黑更有质感 */
+    /* 核心逻辑：背景和文字颜色保持一致，实现抹黑 */
+    background-color: #222; 
     color: #222;
-    cursor: pointer;
-    transition: all 0.3s ease; /* 增加一个丝滑的过渡动画 */
-    border-radius: 2px;
-    padding: 0 2px;
+    
+    /* 装饰：圆角和丝滑过渡 */
+    border-radius: 3px;
+    padding: 0 4px;
+    transition: background-color 0.3s ease;
+    cursor: help;
 }
-
-/* 鼠标悬停状态：文字变白（或者透明背景） */
+/* 使用教程：这是一段普通的文字，但这里有 <span class="spoiler">一个隐藏的秘密</span>。 */
 .spoiler:hover {
-    color: #fff;
+    /* 悬停时背景变透明，文字就会露出它本来的颜色 */
     background-color: transparent;
+    /* 如果你想让显形后的文字更有“提醒感”，可以加个虚线下划线 */
+    border-bottom: 1px dashed #666;
 }
