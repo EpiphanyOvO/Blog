@@ -1,6 +1,6 @@
 ---
 title: A22 Churchill VII
-date: 2026-03-27
+date: 2026-03-28
 image: A22.jpg
 description: 赤石大王心得总结
 tags: 
