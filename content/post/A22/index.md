@@ -55,7 +55,7 @@ categories:
 
 丘吉尔 VII
 
-  （资料来源：https://wiki.warthunder.com/3468-the-churchill-the-iron-prime-minister）
+  资料来源：https://wiki.warthunder.com/3468-the-churchill-the-iron-prime-minister
 
 ### 个人游戏经验总结
   丘7在战雷中最明显的特点就是极为恐怖的防御力，作为英国4.7的中坚力量之一，正面的152MM匀质钢装甲在面对苏联57神针，德国中75，美国76炮等一系列此权重常见武器时就是一堵叹息之墙。而当丘7幸运的当上了大班长（140+SP）时，熟练入的76炮和霉果入的75炮连她的侧面（95MM）都难以击穿，只要优先处理威胁较大的ISU-152和M44等大口径坦歼，依靠她单人守住一个点可谓不费吹灰之力。
