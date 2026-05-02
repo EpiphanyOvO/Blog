@@ -4,4 +4,6 @@ date: 2026-05-02
 ---
 
 
-开始写作吧！
+测试测试
+![wallhaven-q2zpjr.jpg](wallhaven-q2zpjr.jpg)
+
