@@ -1,14 +1,14 @@
 ---
 title: 自组NAS
 date: 2026-05-17
-description: 分享下自己最近组装的NAS
+image: NAS.png
 tags:
      - 技术
 categories:
      - 技术
+description: 分享下自己最近组装的NAS
 ---
-
-最近有了点闲钱，正好早就想搞台NAS(Network Attached Storage网络附属存储)玩玩了，然后分析了下自己是不是真的需要NAS之后（~~拒绝冲动消费~~），一咬牙还是决定买了，于是便有了这篇文章。
+近有了点闲钱，正好早就想搞台NAS(Network Attached Storage网络附属存储)玩玩了，然后分析了下自己是不是真的需要NAS之后（~~拒绝冲动消费~~），一咬牙还是决定买了，于是便有了这篇文章。
 
 配置如下，性能对我来说完全够用了，~~顺便吐槽下内存和固态也太贵了吧~~。
 | 硬件类型 | 配置型号 | 价格 (元) |
