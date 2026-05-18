@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>科普 on Epiphany0v0</title><link>https://blog.onani0721.top/categories/%E7%A7%91%E6%99%AE/</link><description>Recent content in 科普 on Epiphany0v0</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.onani0721.top/categories/%E7%A7%91%E6%99%AE/index.xml" rel="self" type="application/rss+xml"/><item><title>为什么说7z是世界上最好的压缩格式？</title><link>https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/</link><pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/7z.jpg" alt="Featured image of post 为什么说7z是世界上最好的压缩格式？" /&gt;&lt;p&gt;咕咕咕，好久不见！本来想着寒假多发几篇博文的，结果拖延症犯了，再加上没什么灵感，所以就一搁再搁了（&lt;del&gt;绝对不是因为我懒w&lt;/del&gt;）。最近刚开学作业比较少，晚自习剩的时间比较多，&lt;del&gt;再加上突然想起来自己还有个博客&lt;/del&gt;，所以就有了充足的时间来思考写什么，最后便成了你现在所看到的这篇文章。&lt;/p&gt;
+&lt;p&gt;在数字世界里，压缩工具就像我们收纳行李的技巧——好的压缩格式能在有限的“行李箱”（硬盘）里塞进更多东西，还得保证打包快、解压稳。提到压缩，大家可能只知道 ZIP 和老牌的 RAR，但在老司机和开发者圈子里，&lt;strong&gt;7z 格式&lt;/strong&gt;才是那个被反复封神的“最强王者”。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="一-极致压缩率算法的胜利"&gt;一、 极致压缩率：算法的胜利
+&lt;/h3&gt;&lt;p&gt;买压缩软件（&lt;del&gt;虽然大家都在白嫖&lt;/del&gt;）最看重的是什么？当然是能缩多小！这正是 7z 的主场。&lt;/p&gt;
+&lt;p&gt;它的秘密武器叫 &lt;strong&gt;LZMA/LZMA2 算法&lt;/strong&gt;。简单说，它就像一个超级细心的收纳员，能精准预判并剔除冗余数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;战绩对比&lt;/strong&gt;：同样的文档或代码包，7z 通常能比标准 ZIP 小 &lt;strong&gt;10%-70%&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;微操空间&lt;/strong&gt;：7z 允许你疯狂调整参数，比如字典大小（最高 16GB），简直是强迫症和极限存储爱好者的福音。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="二-压缩界的瑞士军刀"&gt;二、 压缩界的“瑞士军刀”
+&lt;/h3&gt;&lt;p&gt;如果高压缩率是 7z 的“矛”，那它的模块化设计就是“全能工具箱”。它不只会一种招式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;看碟下菜&lt;/strong&gt;：针对纯文本可以用 PPMd，针对速度平衡可以用 BZip2。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;固实压缩&lt;/strong&gt;：这是 7z 的杀手锏。它把所有文件像粘豆包一样挤在一起压缩，尤其是遇到一堆小文件时，压缩效果堪称恐怖（&lt;del&gt;代价是想单独拿出一个文件时会慢一点&lt;/del&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="三-开源与免费自由的味道"&gt;三、 开源与免费：自由的味道
+&lt;/h3&gt;&lt;p&gt;7z（及其配套软件 7-Zip）是完全&lt;strong&gt;开源且免费&lt;/strong&gt;的。这意义可大了：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;安全透明&lt;/strong&gt;：没后门，没广告，没弹窗（&lt;del&gt;不像某压缩软件天天弹中奖信息&lt;/del&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;广泛集成&lt;/strong&gt;：因为它开源，所以各行各业的软件都内置了它的核心，稳定得像老黄牛。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="四-aes-256-加密银行级的保安"&gt;四、 AES-256 加密：银行级的保安
+&lt;/h3&gt;&lt;p&gt;现在的隐私多重要啊！7z 原生支持 &lt;strong&gt;AES-256 加密&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在加密模式下，不仅内容被锁死，连&lt;strong&gt;文件列表都能藏起来&lt;/strong&gt;。别人甚至不知道你压缩包里装的是《学习资料》还是《真的学习资料》，相比之下，普通 ZIP 的加密简直像层窗户纸。&lt;/p&gt;
+&lt;h3 id="五-甚至考虑到了艾字节以后"&gt;五、 甚至考虑到了“艾字节”以后
+&lt;/h3&gt;&lt;p&gt;7z 的设计非常超前：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;理论上限&lt;/strong&gt;：支持最大 16EB（艾字节）的文件。&lt;del&gt;虽然你这辈子可能都见不到这么大的硬盘&lt;/del&gt;，但至少不用担心格式过时。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;乱码终结者&lt;/strong&gt;：完美支持 Unicode，再也不会出现换台电脑解压文件名就变成“锟斤拷”的情况了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="无冕之王的软肋它也不是完美的"&gt;“无冕之王”的软肋：它也不是完美的
+&lt;/h3&gt;&lt;p&gt;当然，吹了这么多，7z 也有让人想吐槽的地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原生兼容性&lt;/strong&gt;：Windows 和 macOS 的文件管理器居然还没原生支持它，你得手动装个软件（比如 7-Zip 或 Bandizip）才能打开。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;吃资源&lt;/strong&gt;：开启最高压缩模式时，它会疯狂占用内存和 CPU，你的风扇可能会像直升机一样起飞。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="总结我该选谁"&gt;总结：我该选谁？
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;追求极致体积、备份代码、发敏感文件&lt;/strong&gt;：闭眼选 &lt;strong&gt;7z&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;要把文件发给电脑小白、追求最大兼容性&lt;/strong&gt;：还是老老实实选 &lt;strong&gt;ZIP&lt;/strong&gt; 吧。&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
