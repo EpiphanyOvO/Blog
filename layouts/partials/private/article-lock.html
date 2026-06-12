@@ -1,138 +1,93 @@
 {{- $page := .Page -}}
-{{- $passwordHash := .PasswordHash -}}
-{{- $storageKey := printf "private-article:%s:%s" $page.RelPermalink $passwordHash -}}
+{{- $ciphertext := default "" .Ciphertext -}}
+{{- $salt := default "" .Salt -}}
+{{- $iv := default "" .Iv -}}
+{{- $iterations := default 310000 .Iterations -}}
+{{- $format := default "markdown" .Format -}}
+{{- $isConfigured := .IsConfigured -}}
+{{- $usesLegacyPassword := .UsesLegacyPassword -}}
+{{- $storageKey := printf "private-article:%s" $page.RelPermalink -}}
 
-<section class="private-article">
-    <div
-        class="private-article__gate"
-        data-private-article
-        data-password-hash="{{ $passwordHash }}"
-        data-storage-key="{{ $storageKey }}">
-        <div class="private-article__card">
-            <p class="private-article__eyebrow">Private Article</p>
-            <h1 class="private-article__title">{{ $page.Title }}</h1>
-            <p class="private-article__description">
-                {{ with $page.Params.privateMessage }}
-                    {{ . }}
+<article class="{{ if $page.Params.image }}has-image {{ end }}main-article private-main-article">
+    {{ partial "article/components/header" $page }}
+
+    <section class="article-content">
+        <div class="private-article__gate" data-private-article data-storage-key="{{ $storageKey }}">
+            <div class="private-article__card">
+                <p class="private-article__eyebrow">Private Article</p>
+                <h2 class="private-article__title">{{ $page.Title }}</h2>
+
+                {{ if $isConfigured }}
+                    <p class="private-article__description">
+                        {{ with $page.Params.privateMessage }}
+                            {{ . }}
+                        {{ else }}
+                            这篇文章以密文形式发布，需要输入密码后才能在浏览器中解密查看。
+                        {{ end }}
+                    </p>
+
+                    {{ with $page.Params.passwordHint }}
+                        <p class="private-article__hint">提示：{{ . }}</p>
+                    {{ end }}
+
+                    <form class="private-article__form">
+                        <input
+                            class="private-article__input"
+                            type="password"
+                            name="password"
+                            placeholder="输入文章密码"
+                            autocomplete="current-password"
+                            aria-label="文章密码"
+                            required>
+                        <button class="private-article__button" type="submit">解锁文章</button>
+                    </form>
+
+                    <p class="private-article__error" data-private-article-error hidden></p>
+                    <script type="application/json" data-private-article-payload>{{ dict
+                        "ciphertext" $ciphertext
+                        "salt" $salt
+                        "iv" $iv
+                        "iterations" $iterations
+                        "format" $format
+                    | jsonify }}</script>
                 {{ else }}
-                    这篇文章已启用密码保护，请输入密码后继续阅读。
+                    <p class="private-article__error private-article__error--static">
+                        此文章已标记为私密，但未配置密文正文，因此正文不会公开发布。
+                    </p>
+                    {{ if $usesLegacyPassword }}
+                        <p class="private-article__hint">
+                            旧的 <code>password</code> / <code>passwordHash</code> 方案已停用，因为它会在公开仓库或页面源码中暴露信息。
+                        </p>
+                    {{ end }}
+                    <p class="private-article__hint">
+                        请使用仓库中的加密脚本生成 <code>privateCiphertext</code>、<code>privateSalt</code> 和 <code>privateIv</code> 后再发布。
+                    </p>
                 {{ end }}
-            </p>
 
-            {{ with $page.Params.passwordHint }}
-                <p class="private-article__hint">提示：{{ . }}</p>
-            {{ end }}
-
-            <form class="private-article__form">
-                <input
-                    class="private-article__input"
-                    type="password"
-                    name="password"
-                    placeholder="输入文章密码"
-                    autocomplete="current-password"
-                    aria-label="文章密码"
-                    required>
-                <button class="private-article__button" type="submit">解锁文章</button>
-            </form>
-
-            <p class="private-article__error" data-private-article-error hidden></p>
-
-            <noscript>
-                <p class="private-article__noscript">此文章需要启用 JavaScript 才能验证密码。</p>
-            </noscript>
+                <noscript>
+                    <p class="private-article__noscript">此文章需要启用 JavaScript 才能在浏览器中解密。</p>
+                </noscript>
+            </div>
         </div>
-    </div>
 
-    <div class="private-article__content" data-private-article-content hidden>
-        {{ partial "article/article.html" $page }}
+        <div class="private-article__content" data-private-article-content hidden></div>
+    </section>
 
-        {{ if $page.Params.links }}
-            {{ partial "article/components/links" $page }}
-        {{ end }}
+    {{ partial "article/components/footer" $page }}
+</article>
 
-        {{ partial "article/components/related-content" $page }}
-    </div>
-</section>
+<div class="private-article__after" data-private-article-after hidden>
+    {{ if $page.Params.links }}
+        {{ partial "article/components/links" $page }}
+    {{ end }}
 
-<script>
-    (() => {
-        const gate = document.querySelector("[data-private-article]");
-        if (!gate) return;
+    {{ partial "article/components/related-content" $page }}
 
-        const form = gate.querySelector("form");
-        const input = gate.querySelector("input[name='password']");
-        const error = gate.querySelector("[data-private-article-error]");
-        const content = document.querySelector("[data-private-article-content]");
-        const passwordHash = (gate.dataset.passwordHash || "").toLowerCase();
-        const storageKey = gate.dataset.storageKey || "";
+    {{- if not (eq $page.Params.comments false) }}
+        {{ partial "comments/include" $page }}
+    {{- end }}
+</div>
 
-        const hideError = () => {
-            error.hidden = true;
-            error.textContent = "";
-        };
-
-        const showError = (message) => {
-            error.hidden = false;
-            error.textContent = message;
-        };
-
-        const unlockArticle = () => {
-            gate.hidden = true;
-            content.hidden = false;
-            document.body.classList.add("private-article-unlocked");
-
-            try {
-                window.sessionStorage.setItem(storageKey, "1");
-            } catch (err) {
-                console.warn("Failed to persist article unlock state.", err);
-            }
-        };
-
-        const sha256 = async (value) => {
-            const buffer = new TextEncoder().encode(value);
-            const digest = await window.crypto.subtle.digest("SHA-256", buffer);
-            return Array.from(new Uint8Array(digest))
-                .map((part) => part.toString(16).padStart(2, "0"))
-                .join("");
-        };
-
-        if (!content || !passwordHash) {
-            showError("这篇文章的密码配置不完整，请检查 front matter。");
-            return;
-        }
-
-        if (!window.crypto?.subtle || !window.TextEncoder) {
-            showError("当前浏览器不支持密码验证。");
-            return;
-        }
-
-        try {
-            if (storageKey && window.sessionStorage.getItem(storageKey) === "1") {
-                unlockArticle();
-                return;
-            }
-        } catch (err) {
-            console.warn("Failed to read article unlock state.", err);
-        }
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            hideError();
-
-            const candidate = input.value;
-            if (!candidate) {
-                showError("请输入密码。");
-                return;
-            }
-
-            const candidateHash = await sha256(candidate);
-            if (candidateHash !== passwordHash) {
-                showError("密码错误，请重试。");
-                input.select();
-                return;
-            }
-
-            unlockArticle();
-        });
-    })();
-</script>
+{{ if $isConfigured }}
+    <script src="{{ "js/private-article.js" | relURL }}" defer></script>
+{{ end }}

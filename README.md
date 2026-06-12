@@ -8,7 +8,7 @@
 - 文章与独立页面内容
 - 少量自定义样式
 - GitHub Pages 自动部署工作流
-- 私密文章密码访问功能
+- 私密文章前端解密功能
 
 ## Tech Stack
 
@@ -28,6 +28,7 @@
 │  ├─ page/                 # 独立页面，如 about、archives、search
 │  └─ post/                 # 博客文章
 ├─ layouts/                 # 对主题的模板覆盖
+├─ scripts/                 # 本地辅助脚本
 ├─ static/                  # 直接输出的静态资源
 └─ .github/workflows/       # 自动部署和主题更新
 ```
@@ -119,51 +120,112 @@ layout: page
 
 ## Private Article
 
-本仓库已支持文章级密码访问。启用后，用户打开文章时需要先输入密码，验证通过后才会显示正文。
+本仓库的私密文章不是“把明文正文隐藏起来”，而是“只发布密文，浏览器端输入密码后再解密”。这能避免：
 
-### Option 1: Configure a Plain Password
+- 明文正文出现在生成后的 HTML
+- 明文密码或密码哈希出现在公开仓库
+- 站内搜索和 RSS 直接收录私密文章正文
 
-在文章 front matter 中添加：
+### Important Rules
+
+如果仓库是公开的，必须遵守这几条：
+
+- 不要在私密文章的 `index.md` 正文里写明文内容
+- 不要再使用旧的 `password` 或 `passwordHash` front matter 方案
+- 私密文章的明文草稿应放在仓库外，或放在已忽略的 `.private-drafts/` 目录中
+- 给私密文章使用足够强的密码，否则密文仍可能被离线暴力尝试
+
+### Authoring Workflow
+
+1. 在 `.private-drafts/` 下写私密文章草稿，例如：
+
+```text
+.private-drafts/my-secret.md
+```
+
+2. 用脚本把草稿加密成 front matter 片段：
+
+```powershell
+.\scripts\Protect-PrivateArticle.ps1 `
+  -InputFile .\.private-drafts\my-secret.md `
+  -Password "your-strong-password" `
+  -Format markdown
+```
+
+如果本机的 PowerShell 执行策略拦截脚本，可以改用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\Protect-PrivateArticle.ps1 `
+  -InputFile .\.private-drafts\my-secret.md `
+  -Password "your-strong-password" `
+  -Format markdown
+```
+
+3. 新建或编辑文章的 `index.md`，只保留公开元数据，把脚本输出粘进去
+
+4. 私密文章的正文留空，不要把明文正文提交进仓库
+
+### Example
+
+私密文章的 `index.md` 应该类似这样：
 
 ```yaml
 ---
 title: 私密文章示例
 date: 2026-06-13
+description: 这是一篇受密码保护的文章
 private: true
-password: "123456"
-passwordHint: "六位数字"
-privateMessage: "这篇文章只给知道口令的人看。"
+passwordHint: "提示文字，可选"
+privateMessage: "这篇文章需要输入密码后才能解密查看。"
+privateFormat: markdown
+privateIterations: 310000
+privateSalt: "base64_salt_here"
+privateIv: "base64_iv_here"
+privateCiphertext: "base64_ciphertext_here"
 ---
 ```
 
-字段说明：
+### Script Parameters
 
-- `private`: 是否启用私密文章门禁
-- `password`: 文章密码，构建时会转成 SHA-256 哈希用于前端校验
-- `passwordHint`: 可选，密码提示
-- `privateMessage`: 可选，显示在密码输入框上方的提示文字
+`scripts/Protect-PrivateArticle.ps1` 支持：
 
-### Option 2: Configure a SHA-256 Hash Directly
+- `-InputFile`: 明文草稿文件路径，必填
+- `-Password`: 解密密码，必填
+- `-Format`: `markdown` 或 `html`，默认 `markdown`
+- `-Iterations`: PBKDF2 迭代次数，默认 `310000`
+- `-OutputFile`: 可选，把生成的 front matter 片段写到文件
 
-如果你不希望把明文密码写进仓库，可以直接填写哈希值：
+示例：
 
-```yaml
----
-title: 私密文章示例
-date: 2026-06-13
-private: true
-passwordHash: "your_sha256_hash_here"
----
+```powershell
+.\scripts\Protect-PrivateArticle.ps1 `
+  -InputFile .\.private-drafts\my-secret.html `
+  -Password "another-strong-password" `
+  -Format html `
+  -OutputFile .\private-snippet.txt
 ```
 
-注意：
+### Format Notes
 
-- `passwordHash` 需要是小写十六进制 SHA-256 值
-- `password` 和 `passwordHash` 二选一即可
+- `markdown` 模式会在浏览器中渲染常见 Markdown 语法，适合普通文章
+- `html` 模式会直接把解密后的内容当作 HTML 插入页面，适合你想完全控制输出时使用
+- 由于正文是在浏览器端解密后再渲染，Hugo 的服务端能力不会作用于私密正文本身，例如 TOC、服务端高亮、站内搜索正文收录等
 
 ### Security Note
 
-这是静态站点里的前端密码校验功能，适合做“访问拦截”或“熟人可见”场景，不适合存放真正敏感的数据。
+这是适合公开静态仓库的“前端解密”方案，安全性明显高于把正文或密码直接放进仓库，但它依然不是服务端鉴权系统。
+
+它适合：
+
+- 熟人分享
+- 不希望被随手查看源码就拿到正文的文章
+- 公开仓库下的轻量私密访问
+
+它不适合：
+
+- 真正高敏感数据
+- 需要强身份认证的内容
+- 需要防止暴力尝试的高价值目标
 
 ## Custom Styles
 

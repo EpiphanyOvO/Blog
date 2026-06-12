@@ -91,6 +91,18 @@
     color: #d14343;
 }
 
+.private-article__error--static {
+    display: block;
+}
+
+.private-article__content {
+    margin-top: 2rem;
+}
+
+.private-article__after[hidden] {
+    display: none !important;
+}
+
 .article-private-badge {
     display: inline-flex;
     align-items: center;

@@ -1,9 +1,7 @@
 {{ define "body-class" }}
 article-page
 
-{{- $password := default "" .Params.password -}}
-{{- $passwordHash := default "" .Params.passwordHash -}}
-{{- $isPrivateArticle := and .Params.private (or $password $passwordHash) -}}
+{{- $isPrivateArticle := .Params.private -}}
 {{- if $isPrivateArticle }} private-article-page{{ end }}
 {{- if not $isPrivateArticle -}}
     {{- .Scratch.Set "TOCEnabled" (and .Params.toc .TableOfContents) -}}
@@ -14,18 +12,26 @@ article-page
 {{ end }}
 
 {{ define "main" }}
-{{- $password := default "" .Params.password -}}
-{{- $passwordHash := default "" .Params.passwordHash -}}
-{{- $isPrivateArticle := and .Params.private (or $password $passwordHash) -}}
-{{- $resolvedPasswordHash := "" -}}
-{{- if $passwordHash -}}
-    {{- $resolvedPasswordHash = lower $passwordHash -}}
-{{- else if $password -}}
-    {{- $resolvedPasswordHash = sha256 $password -}}
-{{- end -}}
+{{- $isPrivateArticle := .Params.private -}}
+{{- $privateCiphertext := default "" .Params.privateCiphertext -}}
+{{- $privateSalt := default "" .Params.privateSalt -}}
+{{- $privateIv := default "" .Params.privateIv -}}
+{{- $privateIterations := default 310000 .Params.privateIterations -}}
+{{- $privateFormat := default "markdown" .Params.privateFormat -}}
+{{- $hasEncryptedPayload := and $privateCiphertext $privateSalt $privateIv -}}
+{{- $usesLegacyPassword := or .Params.password .Params.passwordHash -}}
 
 {{- if $isPrivateArticle -}}
-    {{ partial "private/article-lock.html" (dict "Page" . "PasswordHash" $resolvedPasswordHash) }}
+    {{ partial "private/article-lock.html" (dict
+        "Page" . 
+        "Ciphertext" $privateCiphertext
+        "Salt" $privateSalt
+        "Iv" $privateIv
+        "Iterations" $privateIterations
+        "Format" $privateFormat
+        "IsConfigured" $hasEncryptedPayload
+        "UsesLegacyPassword" $usesLegacyPassword
+    ) }}
 {{- else -}}
     {{ partial "article/article.html" . }}
 

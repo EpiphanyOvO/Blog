@@ -1,7 +1,3 @@
-{{- $page := . -}}
-{{- $password := default "" $page.Params.password -}}
-{{- $passwordHash := default "" $page.Params.passwordHash -}}
-{{- $isPrivateArticle := and $page.Params.private (or $password $passwordHash) -}}
-{{- if $isPrivateArticle -}}
+{{- if .Params.private -}}
     <span class="article-private-badge">加密文章</span>
 {{- end -}}

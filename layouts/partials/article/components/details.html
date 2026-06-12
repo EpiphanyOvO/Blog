@@ -25,7 +25,10 @@
         {{ end }}
     </div>
 
-    {{ $showReadingTime := .Params.readingTime | default (.Site.Params.article.readingTime) }}
+    {{ $showReadingTime := false }}
+    {{ if not .Params.private }}
+        {{ $showReadingTime = .Params.readingTime | default (.Site.Params.article.readingTime) }}
+    {{ end }}
     {{ $showDate := not .Date.IsZero }}
     {{ $showFooter := or $showDate $showReadingTime }}
     {{ if $showFooter }}
