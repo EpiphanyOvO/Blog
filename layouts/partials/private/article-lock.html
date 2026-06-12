@@ -1,0 +1,138 @@
+{{- $page := .Page -}}
+{{- $passwordHash := .PasswordHash -}}
+{{- $storageKey := printf "private-article:%s:%s" $page.RelPermalink $passwordHash -}}
+
+<section class="private-article">
+    <div
+        class="private-article__gate"
+        data-private-article
+        data-password-hash="{{ $passwordHash }}"
+        data-storage-key="{{ $storageKey }}">
+        <div class="private-article__card">
+            <p class="private-article__eyebrow">Private Article</p>
+            <h1 class="private-article__title">{{ $page.Title }}</h1>
+            <p class="private-article__description">
+                {{ with $page.Params.privateMessage }}
+                    {{ . }}
+                {{ else }}
+                    这篇文章已启用密码保护，请输入密码后继续阅读。
+                {{ end }}
+            </p>
+
+            {{ with $page.Params.passwordHint }}
+                <p class="private-article__hint">提示：{{ . }}</p>
+            {{ end }}
+
+            <form class="private-article__form">
+                <input
+                    class="private-article__input"
+                    type="password"
+                    name="password"
+                    placeholder="输入文章密码"
+                    autocomplete="current-password"
+                    aria-label="文章密码"
+                    required>
+                <button class="private-article__button" type="submit">解锁文章</button>
+            </form>
+
+            <p class="private-article__error" data-private-article-error hidden></p>
+
+            <noscript>
+                <p class="private-article__noscript">此文章需要启用 JavaScript 才能验证密码。</p>
+            </noscript>
+        </div>
+    </div>
+
+    <div class="private-article__content" data-private-article-content hidden>
+        {{ partial "article/article.html" $page }}
+
+        {{ if $page.Params.links }}
+            {{ partial "article/components/links" $page }}
+        {{ end }}
+
+        {{ partial "article/components/related-content" $page }}
+    </div>
+</section>
+
+<script>
+    (() => {
+        const gate = document.querySelector("[data-private-article]");
+        if (!gate) return;
+
+        const form = gate.querySelector("form");
+        const input = gate.querySelector("input[name='password']");
+        const error = gate.querySelector("[data-private-article-error]");
+        const content = document.querySelector("[data-private-article-content]");
+        const passwordHash = (gate.dataset.passwordHash || "").toLowerCase();
+        const storageKey = gate.dataset.storageKey || "";
+
+        const hideError = () => {
+            error.hidden = true;
+            error.textContent = "";
+        };
+
+        const showError = (message) => {
+            error.hidden = false;
+            error.textContent = message;
+        };
+
+        const unlockArticle = () => {
+            gate.hidden = true;
+            content.hidden = false;
+            document.body.classList.add("private-article-unlocked");
+
+            try {
+                window.sessionStorage.setItem(storageKey, "1");
+            } catch (err) {
+                console.warn("Failed to persist article unlock state.", err);
+            }
+        };
+
+        const sha256 = async (value) => {
+            const buffer = new TextEncoder().encode(value);
+            const digest = await window.crypto.subtle.digest("SHA-256", buffer);
+            return Array.from(new Uint8Array(digest))
+                .map((part) => part.toString(16).padStart(2, "0"))
+                .join("");
+        };
+
+        if (!content || !passwordHash) {
+            showError("这篇文章的密码配置不完整，请检查 front matter。");
+            return;
+        }
+
+        if (!window.crypto?.subtle || !window.TextEncoder) {
+            showError("当前浏览器不支持密码验证。");
+            return;
+        }
+
+        try {
+            if (storageKey && window.sessionStorage.getItem(storageKey) === "1") {
+                unlockArticle();
+                return;
+            }
+        } catch (err) {
+            console.warn("Failed to read article unlock state.", err);
+        }
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            hideError();
+
+            const candidate = input.value;
+            if (!candidate) {
+                showError("请输入密码。");
+                return;
+            }
+
+            const candidateHash = await sha256(candidate);
+            if (candidateHash !== passwordHash) {
+                showError("密码错误，请重试。");
+                input.select();
+                return;
+            }
+
+            unlockArticle();
+        });
+    })();
+</script>

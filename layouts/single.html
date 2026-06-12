@@ -1,0 +1,52 @@
+{{ define "body-class" }}
+article-page
+
+{{- $password := default "" .Params.password -}}
+{{- $passwordHash := default "" .Params.passwordHash -}}
+{{- $isPrivateArticle := and .Params.private (or $password $passwordHash) -}}
+{{- if $isPrivateArticle }} private-article-page{{ end }}
+{{- if not $isPrivateArticle -}}
+    {{- .Scratch.Set "TOCEnabled" (and .Params.toc .TableOfContents) -}}
+{{- else -}}
+    {{- .Scratch.Set "TOCEnabled" false -}}
+{{- end -}}
+{{- .Scratch.Set "hasWidget" (and (not $isPrivateArticle) (gt (len .Widgets) 0)) -}}
+{{ end }}
+
+{{ define "main" }}
+{{- $password := default "" .Params.password -}}
+{{- $passwordHash := default "" .Params.passwordHash -}}
+{{- $isPrivateArticle := and .Params.private (or $password $passwordHash) -}}
+{{- $resolvedPasswordHash := "" -}}
+{{- if $passwordHash -}}
+    {{- $resolvedPasswordHash = lower $passwordHash -}}
+{{- else if $password -}}
+    {{- $resolvedPasswordHash = sha256 $password -}}
+{{- end -}}
+
+{{- if $isPrivateArticle -}}
+    {{ partial "private/article-lock.html" (dict "Page" . "PasswordHash" $resolvedPasswordHash) }}
+{{- else -}}
+    {{ partial "article/article.html" . }}
+
+    {{ if .Params.links }}
+        {{ partial "article/components/links" . }}
+    {{ end }}
+
+    {{ partial "article/components/related-content" . }}
+
+    {{- if not (eq .Params.comments false) }}
+        {{ partial "comments/include" . }}
+    {{- end }}
+{{- end -}}
+
+{{ partialCached "footer/footer" . }}
+{{ partialCached "article/components/photoswipe" . }}
+{{ partial "article/components/mermaid" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ if .Scratch.Get "hasWidget" }}
+        {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}
+    {{ end }}
+{{ end }}

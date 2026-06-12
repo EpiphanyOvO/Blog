@@ -16,3 +16,116 @@
     /* 如果你想让显形后的文字更有“提醒感”，可以加个虚线下划线 */
     border-bottom: 1px dashed #666;
 }
+
+.private-article__gate {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 3rem;
+}
+
+.private-article__card {
+    width: min(100%, 680px);
+    padding: 2rem;
+    border-radius: 24px;
+    background: var(--card-background, #fff);
+    box-shadow: var(--shadow-l1, 0 18px 45px rgba(0, 0, 0, 0.08));
+    text-align: center;
+}
+
+.private-article__eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-color, #2d6cdf);
+}
+
+.private-article__title {
+    margin: 0;
+}
+
+.private-article__description,
+.private-article__hint,
+.private-article__error,
+.private-article__noscript {
+    margin: 1rem 0 0;
+    color: var(--card-text-color-secondary, #666);
+}
+
+.private-article__form {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.private-article__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--card-separator-color, #ddd);
+    border-radius: 14px;
+    background: var(--body-background, #f7f7f7);
+    color: var(--card-text-color-main, #222);
+}
+
+.private-article__input:focus {
+    outline: 2px solid var(--accent-color, #2d6cdf);
+    outline-offset: 2px;
+}
+
+.private-article__button {
+    padding: 0.9rem 1.4rem;
+    border: 0;
+    border-radius: 14px;
+    background: var(--accent-color, #2d6cdf);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.private-article__button:hover {
+    opacity: 0.92;
+}
+
+.private-article__error {
+    color: #d14343;
+}
+
+.article-private-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(209, 67, 67, 0.12);
+    color: #b42323;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.article-private-badge::before {
+    content: "LOCK";
+    display: inline-block;
+    padding: 0.15rem 0.35rem;
+    border-radius: 999px;
+    background: rgba(209, 67, 67, 0.15);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+    .private-article__card {
+        padding: 1.5rem;
+        border-radius: 18px;
+    }
+
+    .private-article__form {
+        flex-direction: column;
+    }
+
+    .private-article__button {
+        width: 100%;
+    }
+}
