@@ -10,6 +10,11 @@
         return Uint8Array.from(binary, (char) => char.charCodeAt(0));
     };
 
+    const parsePayloadJson = (value) => {
+        const rawPayload = JSON.parse(value || "{}");
+        return typeof rawPayload === "string" ? JSON.parse(rawPayload) : rawPayload;
+    };
+
     const escapeHtml = (value) => value
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -248,7 +253,6 @@
 
     const mountPrivateArticle = (gate) => {
         const wrapper = gate.closest(".private-main-article")?.parentElement || gate.parentElement;
-        const payloadNode = wrapper.querySelector("[data-private-article-payload]");
         const content = wrapper.querySelector("[data-private-article-content]");
         const after = wrapper.querySelector("[data-private-article-after]");
         const form = gate.querySelector("form");
@@ -256,12 +260,9 @@
         const error = gate.querySelector("[data-private-article-error]");
         const storageKey = gate.dataset.storageKey || "";
 
-        if (!payloadNode || !content || !form || !input || !error) {
+        if (!content || !form || !input || !error) {
             return;
         }
-
-        const rawPayload = JSON.parse(payloadNode.textContent || "{}");
-        const payload = typeof rawPayload === "string" ? JSON.parse(rawPayload) : rawPayload;
 
         const hideError = () => {
             error.hidden = true;
@@ -271,6 +272,21 @@
         const showError = (message) => {
             error.hidden = false;
             error.textContent = message;
+        };
+
+        const getPayload = () => {
+            const inlinePayload = gate.dataset.privateArticlePayload;
+            if (inlinePayload) {
+                const decodedPayload = window.atob(normalizeBase64(inlinePayload));
+                return parsePayloadJson(decodedPayload);
+            }
+
+            const legacyPayloadNode = wrapper.querySelector("script[data-private-article-payload]");
+            if (legacyPayloadNode) {
+                return parsePayloadJson(legacyPayloadNode.textContent || "{}");
+            }
+
+            throw new Error("Missing private article payload.");
         };
 
         const unlockArticle = (html) => {
@@ -291,6 +307,20 @@
 
         if (!window.crypto?.subtle || !window.TextEncoder || !window.TextDecoder) {
             showError("当前浏览器不支持文章解密。");
+            return;
+        }
+
+        let payload;
+        try {
+            payload = getPayload();
+        } catch (err) {
+            console.warn("Failed to load private article payload.", err);
+            showError("文章加密数据无效，请稍后重试。");
+            return;
+        }
+
+        if (!payload?.ciphertext || !payload?.salt || !payload?.iv) {
+            showError("文章加密数据不完整，请稍后重试。");
             return;
         }
 

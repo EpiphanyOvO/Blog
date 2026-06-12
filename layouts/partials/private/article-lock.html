@@ -7,12 +7,23 @@
 {{- $isConfigured := .IsConfigured -}}
 {{- $usesLegacyPassword := .UsesLegacyPassword -}}
 {{- $storageKey := printf "private-article:%s" $page.RelPermalink -}}
+{{- $payload := dict
+    "ciphertext" $ciphertext
+    "salt" $salt
+    "iv" $iv
+    "iterations" $iterations
+    "format" $format
+| jsonify | base64Encode -}}
 
 <article class="{{ if $page.Params.image }}has-image {{ end }}main-article private-main-article">
     {{ partial "article/components/header" $page }}
 
     <section class="article-content">
-        <div class="private-article__gate" data-private-article data-storage-key="{{ $storageKey }}">
+        <div
+            class="private-article__gate"
+            data-private-article
+            data-storage-key="{{ $storageKey }}"
+            {{ if $isConfigured }}data-private-article-payload="{{ $payload }}"{{ end }}>
             <div class="private-article__card">
                 <p class="private-article__eyebrow">Private Article</p>
                 <h2 class="private-article__title">{{ $page.Title }}</h2>
@@ -43,13 +54,6 @@
                     </form>
 
                     <p class="private-article__error" data-private-article-error hidden></p>
-                    <script type="application/json" data-private-article-payload>{{ dict
-                        "ciphertext" $ciphertext
-                        "salt" $salt
-                        "iv" $iv
-                        "iterations" $iterations
-                        "format" $format
-                    | jsonify | safeHTML }}</script>
                 {{ else }}
                     <p class="private-article__error private-article__error--static">
                         此文章已标记为私密，但未配置密文正文，因此正文不会公开发布。
