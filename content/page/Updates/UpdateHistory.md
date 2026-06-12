@@ -1,3 +1,14 @@
+---
+title: "Update History"
+date: 2026-06-12
+layout: "about"
+slug: "about"
+menu:
+    main:
+        weight: 2
+        params: 
+            icon: about
+---
 # Update History 更新历史
 ## Ver.26/6/13
 - 增加了私密文章功能
