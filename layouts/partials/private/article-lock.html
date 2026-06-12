@@ -14,6 +14,8 @@
     "iterations" $iterations
     "format" $format
 | jsonify | base64Encode -}}
+{{- $scriptPath := "js/private-article.js" -}}
+{{- $scriptVersion := readFile (printf "static/%s" $scriptPath) | md5 -}}
 
 <article class="{{ if $page.Params.image }}has-image {{ end }}main-article private-main-article">
     {{ partial "article/components/header" $page }}
@@ -41,7 +43,7 @@
                         <p class="private-article__hint">提示：{{ . }}</p>
                     {{ end }}
 
-                    <form class="private-article__form">
+                    <form class="private-article__form" method="post" action="">
                         <input
                             class="private-article__input"
                             type="password"
@@ -93,5 +95,5 @@
 </div>
 
 {{ if $isConfigured }}
-    <script src="{{ "js/private-article.js" | relURL }}" defer></script>
+    <script src="{{ printf "%s?v=%s" ($scriptPath | relURL) $scriptVersion }}" defer></script>
 {{ end }}

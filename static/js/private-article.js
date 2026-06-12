@@ -44,8 +44,8 @@
         output = output
             .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
             .replace(/__(.+?)__/g, "<strong>$1</strong>")
-            .replace(/(?<!\*)\*(?!\s)(.+?)(?<!\s)\*(?!\*)/g, "<em>$1</em>")
-            .replace(/(?<!_)_(?!\s)(.+?)(?<!\s)_(?!_)/g, "<em>$1</em>")
+            .replace(/\*([^*\s](?:[\s\S]*?[^*\s])?)\*/g, "<em>$1</em>")
+            .replace(/_([^_\s](?:[\s\S]*?[^_\s])?)_/g, "<em>$1</em>")
             .replace(/~~(.+?)~~/g, "<del>$1</del>");
 
         codeSpans.forEach((html, index) => {
@@ -252,7 +252,8 @@
     };
 
     const mountPrivateArticle = (gate) => {
-        const wrapper = gate.closest(".private-main-article")?.parentElement || gate.parentElement;
+        const article = gate.closest(".private-main-article");
+        const wrapper = (article && article.parentElement) || gate.parentElement;
         const content = wrapper.querySelector("[data-private-article-content]");
         const after = wrapper.querySelector("[data-private-article-after]");
         const form = gate.querySelector("form");
@@ -305,7 +306,7 @@
             }
         };
 
-        if (!window.crypto?.subtle || !window.TextEncoder || !window.TextDecoder) {
+        if (!window.crypto || !window.crypto.subtle || !window.TextEncoder || !window.TextDecoder) {
             showError("当前浏览器不支持文章解密。");
             return;
         }
@@ -319,7 +320,7 @@
             return;
         }
 
-        if (!payload?.ciphertext || !payload?.salt || !payload?.iv) {
+        if (!payload || !payload.ciphertext || !payload.salt || !payload.iv) {
             showError("文章加密数据不完整，请稍后重试。");
             return;
         }
