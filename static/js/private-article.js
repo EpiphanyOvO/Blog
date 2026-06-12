@@ -258,6 +258,7 @@
         const after = wrapper.querySelector("[data-private-article-after]");
         const form = gate.querySelector("form");
         const input = gate.querySelector("input[name='password']");
+        const submitButton = form ? form.querySelector("button[type='submit']") : null;
         const error = gate.querySelector("[data-private-article-error]");
         const storageKey = gate.dataset.storageKey || "";
 
@@ -273,6 +274,13 @@
         const showError = (message) => {
             error.hidden = false;
             error.textContent = message;
+        };
+
+        const setFormEnabled = (enabled) => {
+            input.disabled = !enabled;
+            if (submitButton) {
+                submitButton.disabled = !enabled;
+            }
         };
 
         const getPayload = () => {
@@ -324,6 +332,8 @@
             showError("文章加密数据不完整，请稍后重试。");
             return;
         }
+
+        setFormEnabled(true);
 
         try {
             const cachedHtml = storageKey ? window.sessionStorage.getItem(storageKey) : "";

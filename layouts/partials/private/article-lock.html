@@ -43,7 +43,7 @@
                         <p class="private-article__hint">提示：{{ . }}</p>
                     {{ end }}
 
-                    <form class="private-article__form" method="post" action="">
+                    <form class="private-article__form" method="post" action="" onsubmit="return false">
                         <input
                             class="private-article__input"
                             type="password"
@@ -51,8 +51,9 @@
                             placeholder="输入文章密码"
                             autocomplete="current-password"
                             aria-label="文章密码"
+                            disabled
                             required>
-                        <button class="private-article__button" type="submit">解锁文章</button>
+                        <button class="private-article__button" type="submit" disabled>解锁文章</button>
                     </form>
 
                     <p class="private-article__error" data-private-article-error hidden></p>
