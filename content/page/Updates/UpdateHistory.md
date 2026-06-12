@@ -1,8 +1,8 @@
 ---
 title: "Update History"
 date: 2026-06-12
-layout: "about"
-slug: "about"
+layout: "upd"
+slug: "upd"
 menu:
     main:
         weight: 2
