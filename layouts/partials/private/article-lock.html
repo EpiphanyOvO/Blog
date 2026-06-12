@@ -49,7 +49,7 @@
                         "iv" $iv
                         "iterations" $iterations
                         "format" $format
-                    | jsonify }}</script>
+                    | jsonify | safeHTML }}</script>
                 {{ else }}
                     <p class="private-article__error private-article__error--static">
                         此文章已标记为私密，但未配置密文正文，因此正文不会公开发布。

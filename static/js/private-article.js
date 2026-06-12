@@ -260,7 +260,8 @@
             return;
         }
 
-        const payload = JSON.parse(payloadNode.textContent || "{}");
+        const rawPayload = JSON.parse(payloadNode.textContent || "{}");
+        const payload = typeof rawPayload === "string" ? JSON.parse(rawPayload) : rawPayload;
 
         const hideError = () => {
             error.hidden = true;
