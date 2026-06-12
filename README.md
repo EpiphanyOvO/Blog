@@ -7,14 +7,12 @@
 - 博客站点配置
 - 文章与独立页面内容
 - 少量自定义样式
-- GitHub Pages 自动部署工作流
 - 私密文章前端解密功能
 
 ## Tech Stack
 
 - Static Site Generator: Hugo
 - Theme: `github.com/CaiJimmy/hugo-theme-stack/v3`
-- Deployment: GitHub Pages + GitHub Actions
 - Comments: Utterances
 
 ## Project Structure
@@ -30,45 +28,20 @@
 ├─ layouts/                 # 对主题的模板覆盖
 ├─ scripts/                 # 本地辅助脚本
 ├─ static/                  # 直接输出的静态资源
-└─ .github/workflows/       # 自动部署和主题更新
+└─ .github/workflows/       # 仓库工作流
 ```
 
-## Requirements
+## Writing Notes
 
-本地运行前建议准备：
+这个仓库主要是博客内容源文件，不是面向外部用户的一键部署模板。
 
-- Hugo Extended
-- Go 1.17 或更高版本
-- Git
+如果只是阅读结构，大致关注这几个目录即可：
 
-检查版本：
-
-```bash
-hugo version
-go version
-git --version
-```
-
-## Local Development
-
-首次拉取后，在项目根目录执行：
-
-```bash
-hugo mod tidy
-hugo server -D
-```
-
-默认本地地址：
-
-```text
-http://localhost:1313/
-```
-
-说明：
-
-- `hugo mod tidy` 用于拉取并整理主题模块依赖
-- `hugo server -D` 会连同草稿文章一起启动本地预览
-- 如果你不想预览草稿，可以改用 `hugo server`
+- `content/post/`: 文章
+- `content/page/`: 独立页面
+- `layouts/`: 模板覆盖
+- `assets/scss/custom.scss`: 自定义样式
+- `scripts/Protect-PrivateArticle.ps1`: 私密文章加密脚本
 
 ## Create a New Post
 
@@ -255,36 +228,6 @@ privateCiphertext: "base64_ciphertext_here"
 - `permalinks.toml`: URL 规则
 - `related.toml`: 相关文章规则
 - `module.toml`: Hugo Modules 主题依赖
-
-## Build
-
-生成生产环境静态文件：
-
-```bash
-hugo --minify --gc
-```
-
-输出目录：
-
-```text
-public/
-```
-
-## Deployment
-
-本仓库已配置 GitHub Actions 自动部署。
-
-当前流程：
-
-1. 推送到 `master` 分支
-2. GitHub Actions 执行 Hugo 构建
-3. 构建产物发布到 `gh-pages` 分支
-4. GitHub Pages 提供静态站点访问
-
-相关文件：
-
-- `.github/workflows/deploy.yml`
-- `.github/workflows/update-theme.yml`
 
 ## Comments
 
