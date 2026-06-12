@@ -4,11 +4,19 @@ article-page
 {{- $isPrivateArticle := .Params.private -}}
 {{- if $isPrivateArticle }} private-article-page{{ end }}
 {{- if not $isPrivateArticle -}}
-    {{- .Scratch.Set "TOCEnabled" (and .Params.toc .TableOfContents) -}}
+    {{- $tocEnabled := and .Params.toc .TableOfContents -}}
+    {{- $hasNonTocWidget := false -}}
+    {{- range .Site.Params.widgets.page -}}
+        {{- if ne .type "toc" -}}
+            {{- $hasNonTocWidget = true -}}
+        {{- end -}}
+    {{- end -}}
+    {{- .Scratch.Set "TOCEnabled" $tocEnabled -}}
+    {{- .Scratch.Set "hasWidget" (or $tocEnabled $hasNonTocWidget) -}}
 {{- else -}}
     {{- .Scratch.Set "TOCEnabled" false -}}
+    {{- .Scratch.Set "hasWidget" false -}}
 {{- end -}}
-{{- .Scratch.Set "hasWidget" (and (not $isPrivateArticle) (gt (len .Widgets) 0)) -}}
 {{ end }}
 
 {{ define "main" }}
