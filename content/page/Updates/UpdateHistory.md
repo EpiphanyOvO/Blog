@@ -1,13 +1,13 @@
 ---
 title: "Update History"
-date: 2026-06-12
+date: 2026-06-13
 layout: "upd"
 slug: "upd"
 menu:
     main:
         weight: 2
         params: 
-            icon: search
+            icon: his
 ---
 # Update History 更新历史
 ## Ver.26/6/13
