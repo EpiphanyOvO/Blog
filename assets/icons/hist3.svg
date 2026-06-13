@@ -1,0 +1,11 @@
+<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title _mstHash="11" _mstTextHash="7709390">第一层</title>
+  <rect stroke="#666666" rx="3" id="svg_10" height="15.875" width="15.9375" y="2.3125" x="2.03125" fill="none"/>
+  <path stroke="#666666" id="svg_11" d="m10,16.84375c-2.90055,0 -5.25,-2.3914 -5.25,-5.34375c0,-2.95235 2.34945,-5.34375 5.25,-5.34375c2.90055,0 5.25,2.3914 5.25,5.34375c0,2.95235 -2.34945,5.34375 -5.25,5.34375z" opacity="undefined" fill="none"/>
+  <path stroke="#666666" id="svg_13" d="m10.0625,12l0,-4" opacity="undefined" fill="none"/>
+  <rect stroke="#666666" rx="1" id="svg_16" height="1.8125" width="4.25" y="4.46875" x="7.875" fill="none"/>
+  <line stroke="#666666" id="svg_17" y2="14.34375" x2="13.1875" y1="11.65625" x1="9.9375" fill="none"/>
+ </g>
+</svg>
