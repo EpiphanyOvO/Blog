@@ -7,7 +7,7 @@ menu:
     main:
         weight: 2
         params: 
-            icon: hist3
+            icon: timer
 ---
 # Update History 更新历史
 ## Ver.26/6/13
