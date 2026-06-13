@@ -1,5 +1,5 @@
 ---
-title: "About Us"
+title: "Among Us"
 date: 2026-03-28
 layout: "about"
 slug: "about"
