@@ -1,13 +1,21 @@
 ---
 title: "自组NAS"
 description: "分享下自己最近组装的NAS"
-date: "2026-05-17"
+date: "2026-06-13"
 image: "NAS.png"
 tags:
      - "技术"
 categories:
      - "技术"
 ---
+
+
+
+
+
+
+
+
 
 
 # 引言
