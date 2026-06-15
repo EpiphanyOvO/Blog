@@ -112,7 +112,7 @@ lang = "zh-CN"
 visitor = "true"
 avatar = "mp"
 emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
-requiredMeta = ["name", "email", "url"]
+requiredMeta = ["name", "email"]
 placeholder = "欢迎留言交流！"
 
 [comments.waline.locale]
