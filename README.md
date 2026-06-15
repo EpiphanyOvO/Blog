@@ -231,7 +231,7 @@ privateCiphertext: "base64_ciphertext_here"
 
 ## Comments
 
-当前评论系统为 Utterances，相关配置位于：
+当前评论系统为 waline，相关配置位于：
 
 ```text
 config/_default/params.toml
