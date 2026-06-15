@@ -79,18 +79,18 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "utterances"
+provider = "waline"
 
 [comments.disqusjs]
-shortname = "epiphany0v0s-blog"
+shortname = ""
 apiUrl = ""
-apiKey = "2II6PCJss58mWdjyXwRBl0ZFenYftiXT1doZKOxkOe42k21rvFG0cJ2ga895YAor"
-admin = "Epiphany0v0"
+apiKey = ""
+admin = ""
 adminLabel = ""
 
 [comments.utterances]
-repo = "Epiphanyovo/Blog"
-issueTerm = "pathname"
+repo = ""
+issueTerm = ""
 label = ""
 
 [comments.remark42]
@@ -107,13 +107,13 @@ clientSecret = ""
 autoCreateIssue = false
 
 [comments.waline]
-serverURL = ""
-lang = ""
-visitor = ""
-avatar = ""
+serverURL = "https://walinevercel-rust.vercel.app/"
+lang = "zh-CN"
+visitor = "true"
+avatar = "mp"
 emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
 requiredMeta = ["name", "email", "url"]
-placeholder = ""
+placeholder = "欢迎留言交流！"
 
 [comments.waline.locale]
 admin = "Admin"
