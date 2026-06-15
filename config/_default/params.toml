@@ -107,7 +107,7 @@ clientSecret = ""
 autoCreateIssue = false
 
 [comments.waline]
-serverURL = "https://waline-sepia-psi.vercel.app/"
+serverURL = "https://cnchina.de5.net/"
 lang = "zh-CN"
 visitor = "true"
 avatar = "mp"
