@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Epiphany0v0</title><link>https://blog.onani0721.top/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Epiphany0v0</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.onani0721.top/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>自组NAS</title><link>https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/NAS.png" alt="Featured image of post 自组NAS" /&gt;&lt;h1 id="引言"&gt;引言
+&lt;/h1&gt;&lt;p&gt;最近有了点儿闲钱，正好早就想搞台NAS(Network Attached Storage)玩玩了，然后分析了下自己是不是真的需要NAS之后（&lt;del&gt;拒绝冲动消费&lt;/del&gt;），最后还是决定买了，于是便有了这篇文章。&lt;/p&gt;
+&lt;p&gt;配置如下，性能对我来说完全够用了，&lt;del&gt;顺便吐槽下内存和固态也太贵了吧&lt;/del&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;硬件类型&lt;/th&gt;
+&lt;th style="text-align: left"&gt;配置型号&lt;/th&gt;
+&lt;th style="text-align: left"&gt;价格 (元)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;CPU&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Intel Core i3-8100&lt;/td&gt;
+&lt;td style="text-align: left"&gt;117&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;主板&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;技嘉 Z370M DS3H&lt;/td&gt;
+&lt;td style="text-align: left"&gt;180&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;内存&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;8G DDR4 2666MHz&lt;/td&gt;
+&lt;td style="text-align: left"&gt;150&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;固态硬盘&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;128G 三星 M.2 NVMe&lt;/td&gt;
+&lt;td style="text-align: left"&gt;136&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;散热器&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;下压散热器&lt;/td&gt;
+&lt;td style="text-align: left"&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;电源&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;长城 300W&lt;/td&gt;
+&lt;td style="text-align: left"&gt;105&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;机箱&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;射手座&lt;/td&gt;
+&lt;td style="text-align: left"&gt;259&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;机械硬盘&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;自备 4T * 2&lt;/td&gt;
+&lt;td style="text-align: left"&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;总计&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;974&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id="核心服务栈"&gt;核心服务栈：
+&lt;/h1&gt;&lt;p&gt;系统装的飞牛，为了追求稳定所以没去尝试黑裙。&lt;/p&gt;
+&lt;h2 id="1-网络底层与安全过滤"&gt;1. 网络底层与安全过滤
+&lt;/h2&gt;&lt;p&gt;Tailscale：整个异地组网的灵魂。有了它，不管是出门在外还是在学校，都能随时通过虚拟局域网 IP 安全直连家里的 NAS。不用折腾危险的公网端口映射，彻底告别公网 IP 焦虑。飞牛系统自带的我觉得局限性太大，所以没有使用。&lt;/p&gt;
+&lt;p&gt;AdGuard Home：全屋的 DNS 大管家。在本地直接作为第一道过滤网，静默拦截各种设备上的垃圾广告与追踪弹窗，顺便做一下局域网内的 DNS 加速。&lt;/p&gt;
+&lt;p&gt;v2raya：网络环境的底层支撑，负责解决某些容器在拉取资源或更新时的网络连通性问题，懂的都懂。(后续估计会换成软路由)&lt;/p&gt;
+&lt;h2 id="2-自动化下载"&gt;2. 自动化下载
+&lt;/h2&gt;&lt;p&gt;虽然不看 4K 原盘，但必要的资源留存还是得有高效的工具来跑：&lt;/p&gt;
+&lt;p&gt;Aria2-Pro + AriaNg：常驻后台的轻量级全能下载神器。配合 AriaNg 的 Web 前端，不管是 HTTP 链接还是磁力种子，都能直接跑满带宽。日常远程丢链接挂机下载，体验极佳。&lt;/p&gt;
+&lt;p&gt;Jackett：强大的 P2P 种子索引聚合器。作为自动化下载的后端黑盒，一键打通全网资源的搜索通路。&lt;/p&gt;
+&lt;p&gt;qBittorrent：老牌 PT/BT 专用下载器，主要用来挂一些大文件和高质量的开源镜像。&lt;/p&gt;
+&lt;p&gt;openlist：主要用来聚合文件协议方便挂载，网页功能对我来说反而没那么常用。&lt;/p&gt;
+&lt;h2 id="3-数据同步与音频服务"&gt;3. 数据同步与音频服务
+&lt;/h2&gt;&lt;p&gt;Rclone：这台服务器的“超级运油车”。配合自建的各种存储后端，我用它来直接挂载和管理云端账户。通过流式传输（Streaming）在本地、VPS 和云盘之间互通资源，不吃本地存储，也不占多余的临时空间。&lt;/p&gt;
+&lt;p&gt;Navidrome：我不怎么看大片，但我离不开音乐。这是极其轻量级的自建音乐流媒体服务。内存占用低到可以忽略不计，配合第三方手机客户端，串流自己的音乐库。&lt;/p&gt;
+&lt;h2 id="4-图书管理系统"&gt;4. 图书管理系统
+&lt;/h2&gt;&lt;p&gt;还没想好用什么来搭建，待定。&lt;/p&gt;
+&lt;h1 id="结尾"&gt;结尾
+&lt;/h1&gt;&lt;p&gt;正如我开头所说，虽然这台nas配置不高，但对我来说完全够用，在跑了6、7个docker和一些本地服务的情况下，cpu占用也只有个位，内存占用也只有25%左右。之后我也会继续摸索nas的相关玩法，以上。&lt;/p&gt;</description></item></channel></rss>

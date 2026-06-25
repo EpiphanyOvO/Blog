@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Epiphany0v0</title><link>https://blog.onani0721.top/post/</link><description>Recent content in Posts on Epiphany0v0</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.onani0721.top/post/index.xml" rel="self" type="application/rss+xml"/><item><title>自组NAS</title><link>https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E8%87%AA%E7%BB%84nas/NAS.png" alt="Featured image of post 自组NAS" /&gt;&lt;h1 id="引言"&gt;引言
+&lt;/h1&gt;&lt;p&gt;最近有了点儿闲钱，正好早就想搞台NAS(Network Attached Storage)玩玩了，然后分析了下自己是不是真的需要NAS之后（&lt;del&gt;拒绝冲动消费&lt;/del&gt;），最后还是决定买了，于是便有了这篇文章。&lt;/p&gt;
+&lt;p&gt;配置如下，性能对我来说完全够用了，&lt;del&gt;顺便吐槽下内存和固态也太贵了吧&lt;/del&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;硬件类型&lt;/th&gt;
+&lt;th style="text-align: left"&gt;配置型号&lt;/th&gt;
+&lt;th style="text-align: left"&gt;价格 (元)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;CPU&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Intel Core i3-8100&lt;/td&gt;
+&lt;td style="text-align: left"&gt;117&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;主板&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;技嘉 Z370M DS3H&lt;/td&gt;
+&lt;td style="text-align: left"&gt;180&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;内存&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;8G DDR4 2666MHz&lt;/td&gt;
+&lt;td style="text-align: left"&gt;150&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;固态硬盘&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;128G 三星 M.2 NVMe&lt;/td&gt;
+&lt;td style="text-align: left"&gt;136&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;散热器&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;下压散热器&lt;/td&gt;
+&lt;td style="text-align: left"&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;电源&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;长城 300W&lt;/td&gt;
+&lt;td style="text-align: left"&gt;105&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;机箱&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;射手座&lt;/td&gt;
+&lt;td style="text-align: left"&gt;259&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;机械硬盘&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;自备 4T * 2&lt;/td&gt;
+&lt;td style="text-align: left"&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;总计&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;974&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id="核心服务栈"&gt;核心服务栈：
+&lt;/h1&gt;&lt;p&gt;系统装的飞牛，为了追求稳定所以没去尝试黑裙。&lt;/p&gt;
+&lt;h2 id="1-网络底层与安全过滤"&gt;1. 网络底层与安全过滤
+&lt;/h2&gt;&lt;p&gt;Tailscale：整个异地组网的灵魂。有了它，不管是出门在外还是在学校，都能随时通过虚拟局域网 IP 安全直连家里的 NAS。不用折腾危险的公网端口映射，彻底告别公网 IP 焦虑。飞牛系统自带的我觉得局限性太大，所以没有使用。&lt;/p&gt;
+&lt;p&gt;AdGuard Home：全屋的 DNS 大管家。在本地直接作为第一道过滤网，静默拦截各种设备上的垃圾广告与追踪弹窗，顺便做一下局域网内的 DNS 加速。&lt;/p&gt;
+&lt;p&gt;v2raya：网络环境的底层支撑，负责解决某些容器在拉取资源或更新时的网络连通性问题，懂的都懂。(后续估计会换成软路由)&lt;/p&gt;
+&lt;h2 id="2-自动化下载"&gt;2. 自动化下载
+&lt;/h2&gt;&lt;p&gt;虽然不看 4K 原盘，但必要的资源留存还是得有高效的工具来跑：&lt;/p&gt;
+&lt;p&gt;Aria2-Pro + AriaNg：常驻后台的轻量级全能下载神器。配合 AriaNg 的 Web 前端，不管是 HTTP 链接还是磁力种子，都能直接跑满带宽。日常远程丢链接挂机下载，体验极佳。&lt;/p&gt;
+&lt;p&gt;Jackett：强大的 P2P 种子索引聚合器。作为自动化下载的后端黑盒，一键打通全网资源的搜索通路。&lt;/p&gt;
+&lt;p&gt;qBittorrent：老牌 PT/BT 专用下载器，主要用来挂一些大文件和高质量的开源镜像。&lt;/p&gt;
+&lt;p&gt;openlist：主要用来聚合文件协议方便挂载，网页功能对我来说反而没那么常用。&lt;/p&gt;
+&lt;h2 id="3-数据同步与音频服务"&gt;3. 数据同步与音频服务
+&lt;/h2&gt;&lt;p&gt;Rclone：这台服务器的“超级运油车”。配合自建的各种存储后端，我用它来直接挂载和管理云端账户。通过流式传输（Streaming）在本地、VPS 和云盘之间互通资源，不吃本地存储，也不占多余的临时空间。&lt;/p&gt;
+&lt;p&gt;Navidrome：我不怎么看大片，但我离不开音乐。这是极其轻量级的自建音乐流媒体服务。内存占用低到可以忽略不计，配合第三方手机客户端，串流自己的音乐库。&lt;/p&gt;
+&lt;h2 id="4-图书管理系统"&gt;4. 图书管理系统
+&lt;/h2&gt;&lt;p&gt;还没想好用什么来搭建，待定。&lt;/p&gt;
+&lt;h1 id="结尾"&gt;结尾
+&lt;/h1&gt;&lt;p&gt;正如我开头所说，虽然这台nas配置不高，但对我来说完全够用，在跑了6、7个docker和一些本地服务的情况下，cpu占用也只有个位，内存占用也只有25%左右。之后我也会继续摸索nas的相关玩法，以上。&lt;/p&gt;</description></item><item><title>睡眠恐惧</title><link>https://blog.onani0721.top/p/%E7%9D%A1%E7%9C%A0%E6%81%90%E6%83%A7/</link><pubDate>Sun, 05 Apr 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E7%9D%A1%E7%9C%A0%E6%81%90%E6%83%A7/</guid><description>&lt;p&gt;&lt;span class="spoiler"&gt;这是一篇关于哲学思考的诗，可能会引起不适，请谨慎阅读:)&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id="睡眠恐惧"&gt;“睡眠恐惧”
+&lt;/h3&gt;&lt;p&gt;你们可曾思考过，
+睡眠死亡是否联系？&lt;/p&gt;
+&lt;p&gt;你陷入睡眠之时，
+你的思想已然停滞。&lt;/p&gt;
+&lt;p&gt;思想停滞与长逝，
+可是件不一样的事？&lt;/p&gt;
+&lt;p&gt;你的两段清醒间，
+夹杂着黑暗与迷烟。&lt;/p&gt;
+&lt;p&gt;其中发生的故事，
+对你来说皆是未知。&lt;/p&gt;
+&lt;p&gt;若非起夜与作业，
+永不知何事在黑夜。&lt;/p&gt;
+&lt;p&gt;在你起身于早晨，
+是否与昨夜是一人？&lt;/p&gt;
+&lt;p&gt;当主观意识已断，
+梦中场景不断变换；&lt;/p&gt;
+&lt;p&gt;谁知亡命之景象，
+是不是与梦境一般？&lt;/p&gt;
+&lt;h1 id="end"&gt;————END————
+&lt;/h1&gt;</description></item><item><title>A22 Churchill VII</title><link>https://blog.onani0721.top/p/a22-churchill-vii/</link><pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/a22-churchill-vii/</guid><description>&lt;img src="https://blog.onani0721.top/p/a22-churchill-vii/A22.jpg" alt="Featured image of post A22 Churchill VII" /&gt;&lt;h1 id="步兵坦克-mk-iv-丘吉尔-vii"&gt;步兵坦克 Mk IV 丘吉尔 VII
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;载具名称：&lt;/strong&gt; 步兵坦克 Mk IV 丘吉尔 VII&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;载具ID：&lt;/strong&gt; uk_a_22f_mk_7_churchill&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;国家：&lt;/strong&gt; 英国&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;等级：&lt;/strong&gt; III级&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;战斗权重：&lt;/strong&gt; AB 4.7 / RB 4.7 / SB 4.7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;常用名：&lt;/strong&gt; 丘吉尔 VII （丘7）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;前置载具：&lt;/strong&gt; 丘吉尔 III&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;次级载具：&lt;/strong&gt; 御夫座 VII&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;所需经验值：&lt;/strong&gt; 33000&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;价格：&lt;/strong&gt; 105000 银狮&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="研发背景"&gt;研发背景
+&lt;/h2&gt;&lt;p&gt;关于丘吉尔坦克开发的最早考虑可以追溯到1939年，当时正在寻找替代马蒂尔达II步兵坦克的车型。沃克斯豪尔公司受委托开发这款新坦克，其设计基于第一次世界大战的需求。该坦克能够穿越最艰难的地形，并能抵御所有已知敌方反坦克武器的火力。&lt;/p&gt;
+&lt;p&gt;武器配置被视为次要且仅具备;速度在规划中无显著影响，因为坦克只需在壕沟战场景下与步兵保持同步，因此被归类为步兵坦克，类似玛蒂尔达。然而，新型坦克可安装在普通铁路车厢上，这限制了车宽，只能安装更小的坦克炮塔，从而也只能安装更小的炮塔。&lt;/p&gt;
+&lt;p&gt;因此，采用了第一次世界大战时期英国坦克的结构，履带延伸至车体上缘以上。放弃了安装两门40毫米2磅炮（侧面拱窗式）的主炮，类似于Mark I的布局，决定在车体顶部的旋转炮塔中安装一门2磅炮，驾驶员座椅旁的车体内安装一门76毫米3英寸榴弹炮。不列颠之战刚刚开始，出于士气考虑，A22被命名为“丘吉尔”。&lt;/p&gt;
+&lt;p&gt;与武器配置保持一致，乘员进行了重组，这与当时其他车辆不同。车体中不再配备无线电操作员，而是一名76毫米榴弹炮的炮手。乘员包括指挥官、驾驶员、早期型号的两名炮手（后期型号为无线电操作员/机枪手）和一名装填手。车体分为四个部分：驾驶舱、发动机舱、传动舱和带炮塔的战斗舱。&lt;/p&gt;
+&lt;p&gt;车体由12.7毫米厚的标准钢板制成，装甲板通过螺丝或铆接固定，使得Mark I最坚固的部分装甲厚度可达102毫米。车体每侧由十一个路轮支撑，其中只有九个直接支撑装甲。如此多的负重轮确保了即使部分负重轮受损，坦克仍能继续前进。&lt;/p&gt;
+&lt;p&gt;此外，早期丘吉尔型越来越多地采用铸造炮塔，因为其生产步骤更少、人员更少，因此炮塔坚固，且不会有铆钉碎片在车内飞溅的风险。沉重的重量依然是劣势。当需要在后期型号的炮塔中安装更重的57毫米6磅炮时，改用焊接炮塔以减轻重量。&lt;/p&gt;
+&lt;p&gt;丘吉尔的一次重大改款是Mk VII。它仍使用Mk VI的75毫米炮，但Mk VII更宽且装甲更厚。其正面装甲比虎式坦克厚50%（152毫米），能够承受敌方巨大火力。它常被称为丘吉尔重型坦克，因为它比前辈的装甲更坚固。1945年春，该机型获得了自己的规格编号“A42”。Mk VII首次由英国坦克部队在诺曼底登陆时使用。诺曼底登陆后，该炮被西欧皇家装甲兵团的三个团和意大利的英国坦克军团使用。二战后，其中20辆此类车辆（与鳄鱼和AVRE一起）在朝鲜战争中服役于第7皇家坦克团。例如，它们曾在第三次首尔战役中使用。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.onani0721.top/p/a22-churchill-vii/chu.jpg"
+width="1102"
+height="739"
+srcset="https://blog.onani0721.top/p/a22-churchill-vii/chu_hu_501f7ba78cb1be7c.jpg 480w, https://blog.onani0721.top/p/a22-churchill-vii/chu_hu_3cc70d699434e316.jpg 1024w"
+loading="lazy"
+alt="一台野生的（？）丘吉尔VII坦克"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="357px"
+&gt;&lt;/p&gt;
+&lt;p&gt;资料来源(&lt;a class="link" href="https://wiki.warthunder.com/3468-the-churchill-the-iron-prime-minister" target="_blank" rel="noopener"
+&gt;https://wiki.warthunder.com/3468-the-churchill-the-iron-prime-minister&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id="个人游戏经验总结"&gt;个人游戏经验总结
+&lt;/h2&gt;&lt;p&gt;丘7在战雷中最明显的特点就是极为恐怖的防御力，作为英国4.7的中坚力量之一，正面的152MM匀质钢装甲在面对苏联57神针，德国中75，美国76炮等一系列此权重常见武器时就是一堵叹息之墙。而当丘7幸运的当上了大班长（140+SP）时，熟练入的76炮和霉果入的75炮连她的侧面（95MM）都难以击穿，只要优先处理威胁较大的ISU-152和M44等大口径坦歼，依靠她单人守住一个点可谓不费吹灰之力。&lt;/p&gt;
+&lt;p&gt;但成也装甲，败也装甲，厚重的防护给丘7带来的不只有逆天的生存性，还有极为拉胯的机动能力。335马力的发动机带动42吨的车体（功重比8.4，全游倒数），她的最大速度只有22KM/H，倒车更是只有2KM/H。这使得丘7只能作为一个超级移动堡垒行动，而不能担任救火队长。&lt;/p&gt;
+&lt;p&gt;不幸的是，作为一个移动堡垒，丘7的主武器为一门75MM OQF Mk.V坦克炮，主力弹为阉割（无装药）后的美制M61，失去后效的同时穿深几乎没有任何提升&lt;/p&gt;
+&lt;p&gt;注：现版本包括丘7在内的所有英国75MM炮都获得了完全体M61！使得丘7的火力大幅提升。&lt;/p&gt;
+&lt;p&gt;给对面车组一个个点名也是常有的事，如此贫弱的火力再加上恐怖的装甲，使得丘7成为了一台典型的恶心自己也恶心对面的载具。特别是面对同样低攻高防的KV-1时，两边互相刮痧的场面可谓酣畅淋漓的赤石。没有用KV-1与丘7进行过吉列的豆蒸的雷批的人生是不完美的（暴论）。&lt;/p&gt;
+&lt;p&gt;总结：丘7要在队友抱团便秘时扛起大旗，作为进攻的先锋冲锋在前。她既是矛又是盾，大班长时很有可能全队的希望都托付与你，不过不用紧张，丘7的厚重装甲带来了极高的容错，不必担心突然暴毙。作为一台上限极低而下线很高的重型坦克，即使是Mojo1#1这样的萌新菜逼也能轻松打出正KD。所以说，想玩好丘7，不必紧绷神经，只要像真正的的英国人一样，坐在慢悠悠的丘吉尔坦克里，煮上一杯红茶，“享受”无穷无尽的赶路时间即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.onani0721.top/p/a22-churchill-vii/zcq.png"
+width="706"
+height="404"
+srcset="https://blog.onani0721.top/p/a22-churchill-vii/zcq_hu_2afa1a396a9f309b.png 480w, https://blog.onani0721.top/p/a22-churchill-vii/zcq_hu_159e847fe2ca91b1.png 1024w"
+loading="lazy"
+alt="带英特色之坦克车载煮茶器"
+class="gallery-image"
+data-flex-grow="174"
+data-flex-basis="419px"
+&gt;&lt;/p&gt;</description></item><item><title>谈谈我为什么不喜欢VTB文化</title><link>https://blog.onani0721.top/p/%E8%B0%88%E8%B0%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%96%9C%E6%AC%A2vtb%E6%96%87%E5%8C%96/</link><pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E8%B0%88%E8%B0%88%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%96%9C%E6%AC%A2vtb%E6%96%87%E5%8C%96/</guid><description>&lt;p&gt;我对VTB（虚拟主播）一直抱有反感。这种反感并非一时冲动，而是长时间观察后积累的理性结论。简单来说：我讨厌VTB的虚假、浅薄，以及它对二次元文化和观众精神的双重腐蚀。&lt;/p&gt;
+&lt;h3 id="虚假的本质"&gt;虚假的本质
+&lt;/h3&gt;&lt;p&gt;VTB的核心卖点在于“虚拟形象 + 真实互动”。但这恰恰是最大的谎言。&lt;br&gt;
+观众看到的那个精致立绘、甜美声音、精心设计的“温柔”“元气”“病娇”人设，全部是预先包装好的表演。动捕、声卡、美颜滤镜、剧本台词共同构成了一个完美的虚假人格。&lt;/p&gt;
+&lt;p&gt;真人主播会疲惫、会忘词、会因为现实压力露出破绽，而VTB永远不会。它们永远保持“完美状态”，永远在“爱你”“为你加油”。这种永恒的虚假温柔，比冷冰冰的AI聊天机器人更令人不适——因为它假装自己有灵魂，却连一丝真实的温度都没有。&lt;/p&gt;
+&lt;p&gt;这不是陪伴，这是&lt;strong&gt;定制化的情感欺骗&lt;/strong&gt;。观众投入感情、投入金钱，换来的不过是一连串预设好的回应。皮套之下，可能是一个团队在轮流操作，也可能是一个把这份工作当作单纯赚钱工具的人。无论哪种，都与“真诚互动”毫无关系。&lt;/p&gt;
+&lt;h3 id="低门槛带来的内容劣化"&gt;低门槛带来的内容劣化
+&lt;/h3&gt;&lt;p&gt;VTB行业的准入门槛极低，这直接导致了大量低质量内容的泛滥。&lt;br&gt;
+画一个Live2D模型、买一套动捕设备、调好声卡和滤镜，就能立刻开播。结果就是直播间充斥着大量内容空洞、才艺平庸的“量产型”虚拟主播。&lt;/p&gt;
+&lt;p&gt;她们/他们大多只会做两件事：卖萌和收米。&lt;br&gt;
+杂谈车轱辘话反复说，唱歌经常跑调，游戏水平一般，所谓“整活”也只是低幼化的表演。真正有才华、认真打磨内容的VTB是少数，却被海量平庸者严重稀释。&lt;/p&gt;
+&lt;p&gt;二次元本应是创意与热情的载体，而如今的VTB圈却变成了快餐式情感消费的流水线。观众刷到的不再是独特的个性，而是高度同质化的“可爱系”“温柔系”“毒舌系”模板。长此以往，整个圈子的平均水准只会不断下滑。&lt;/p&gt;
+&lt;h3 id="粉丝的饭圈化与精神异化"&gt;粉丝的饭圈化与精神异化
+&lt;/h3&gt;&lt;p&gt;VTB粉丝的魔怔程度，在当下互联网娱乐中堪称极端。&lt;br&gt;
+他们为虚拟角色打钱冲榜、互相攻击、跨平台出警，甚至把“推V”当作人生核心意义。一些粉丝会把V当成现实中的恋爱对象，公开宣称“结婚”“一生推”，并对任何质疑者进行激烈反击。&lt;/p&gt;
+&lt;p&gt;这已经不是正常的追逐娱乐，而是典型的&lt;strong&gt;精神传销&lt;/strong&gt;。&lt;br&gt;
+观众明知对方是虚拟形象，却心甘情愿为“情感价值”支付高额费用；明知人设是包装出来的，却依然沉迷其中无法自拔。VTB成功地把“纸片人”包装成了情感寄托的对象，把打钱行为包装成了“爱情”或“支持”。&lt;/p&gt;
+&lt;p&gt;更讽刺的是，当V毕业、塌房或转向更商业化的运营时，许多粉丝会迅速破防、转黑，或寻找下一个替代品。这种循环本身就证明了这种“关系”的脆弱和虚假。&lt;/p&gt;
+&lt;h3 id="彻底的商业收割逻辑"&gt;彻底的商业收割逻辑
+&lt;/h3&gt;&lt;p&gt;不要被“陪伴”“梦想”“二次元文化”这些漂亮话欺骗。&lt;br&gt;
+VTB行业的核心逻辑就是商业收割。&lt;br&gt;
+舰长、提督、总督、礼物、周边、新衣服、3D直播、生日会……每一项设计都精准针对观众的消费心理。许多V在小有热度后，便迅速把重心转向如何最大化变现，而不是内容本身。&lt;/p&gt;
+&lt;p&gt;这种模式比传统偶像工业更高效，也更冷血。因为皮套可以无限更换、永不衰老，观众的“爱”可以被反复收割而无需承担任何现实责任。&lt;/p&gt;
+&lt;p&gt;我并非反对商业化，但当商业化彻底吞噬内容、情感和真实性时，它就变成了纯粹的剥削。&lt;/p&gt;
+&lt;h3 id="我选择真实"&gt;我选择真实
+&lt;/h3&gt;&lt;p&gt;我依然是二次元的爱好者。我喜欢动画、游戏、音乐，但我不接受把幻想扭曲成这种低劣的情感替代品。&lt;/p&gt;
+&lt;p&gt;相比VTB，我更愿意观看真人主播。&lt;br&gt;
+他们会因为失败而沮丧，会因为观众的鼓励而真诚感谢，会在直播中流露出真实的喜怒哀乐。那种活生生的不完美，才是真正有价值的内容。&lt;/p&gt;
+&lt;p&gt;VTB的问题不在于“虚拟”，而在于它把虚拟做成了最廉价、最虚假、最功利的形式。它不是在丰富二次元，而是在消耗和玷污二次元。&lt;/p&gt;
+&lt;p&gt;我不喜欢VTB。&lt;br&gt;
+不是因为我跟不上潮流，而是因为我看清了它本质上的空洞与虚伪。&lt;/p&gt;
+&lt;p&gt;如果你还在为纸片人投入大量时间、金钱和感情，我建议你停下来认真想想：你真正得到的，到底是什么？&lt;/p&gt;
+&lt;p&gt;&lt;span class="spoiler"&gt;明天没有希望，只有你关注的那个皮套人，在你的梦里，以及你的银行账单上，陪你一起飞翔。&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id="宇宙安全声明"&gt;宇宙安全声明
+&lt;/h3&gt;&lt;p&gt;本文所有观点均为作者个人独立思考与观察所得，仅代表作者本人立场。本文旨在讨论文化现象与个人审美偏好，不针对任何特定VTuber、VTB团体、企业或个人进行人身攻击或恶意诽谤。作者不对任何读者因阅读本文后产生的行为、情绪波动或现实决策承担任何责任。阅读即表示您理解并接受以上声明，宇宙和平，理性讨论。&lt;/p&gt;
+&lt;p&gt;结语引用自：elfile4138&lt;/p&gt;</description></item><item><title>为什么说7z是世界上最好的压缩格式？</title><link>https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/</link><pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B47z%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F/7z.jpg" alt="Featured image of post 为什么说7z是世界上最好的压缩格式？" /&gt;&lt;p&gt;咕咕咕，好久不见！本来想着寒假多发几篇博文的，结果拖延症犯了，再加上没什么灵感，所以就一搁再搁了（&lt;del&gt;绝对不是因为我懒w&lt;/del&gt;）。最近刚开学作业比较少，晚自习剩的时间比较多，&lt;del&gt;再加上突然想起来自己还有个博客&lt;/del&gt;，所以就有了充足的时间来思考写什么，最后便成了你现在所看到的这篇文章。&lt;/p&gt;
+&lt;p&gt;在数字世界里，压缩工具就像我们收纳行李的技巧——好的压缩格式能在有限的“行李箱”（硬盘）里塞进更多东西，还得保证打包快、解压稳。提到压缩，大家可能只知道 ZIP 和老牌的 RAR，但在老司机和开发者圈子里，&lt;strong&gt;7z 格式&lt;/strong&gt;才是那个被反复封神的“最强王者”。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="一-极致压缩率算法的胜利"&gt;一、 极致压缩率：算法的胜利
+&lt;/h3&gt;&lt;p&gt;买压缩软件（&lt;del&gt;虽然大家都在白嫖&lt;/del&gt;）最看重的是什么？当然是能缩多小！这正是 7z 的主场。&lt;/p&gt;
+&lt;p&gt;它的秘密武器叫 &lt;strong&gt;LZMA/LZMA2 算法&lt;/strong&gt;。简单说，它就像一个超级细心的收纳员，能精准预判并剔除冗余数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;战绩对比&lt;/strong&gt;：同样的文档或代码包，7z 通常能比标准 ZIP 小 &lt;strong&gt;10%-70%&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;微操空间&lt;/strong&gt;：7z 允许你疯狂调整参数，比如字典大小（最高 16GB），简直是强迫症和极限存储爱好者的福音。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="二-压缩界的瑞士军刀"&gt;二、 压缩界的“瑞士军刀”
+&lt;/h3&gt;&lt;p&gt;如果高压缩率是 7z 的“矛”，那它的模块化设计就是“全能工具箱”。它不只会一种招式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;看碟下菜&lt;/strong&gt;：针对纯文本可以用 PPMd，针对速度平衡可以用 BZip2。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;固实压缩&lt;/strong&gt;：这是 7z 的杀手锏。它把所有文件像粘豆包一样挤在一起压缩，尤其是遇到一堆小文件时，压缩效果堪称恐怖（&lt;del&gt;代价是想单独拿出一个文件时会慢一点&lt;/del&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="三-开源与免费自由的味道"&gt;三、 开源与免费：自由的味道
+&lt;/h3&gt;&lt;p&gt;7z（及其配套软件 7-Zip）是完全&lt;strong&gt;开源且免费&lt;/strong&gt;的。这意义可大了：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;安全透明&lt;/strong&gt;：没后门，没广告，没弹窗（&lt;del&gt;不像某压缩软件天天弹中奖信息&lt;/del&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;广泛集成&lt;/strong&gt;：因为它开源，所以各行各业的软件都内置了它的核心，稳定得像老黄牛。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="四-aes-256-加密银行级的保安"&gt;四、 AES-256 加密：银行级的保安
+&lt;/h3&gt;&lt;p&gt;现在的隐私多重要啊！7z 原生支持 &lt;strong&gt;AES-256 加密&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在加密模式下，不仅内容被锁死，连&lt;strong&gt;文件列表都能藏起来&lt;/strong&gt;。别人甚至不知道你压缩包里装的是《学习资料》还是《真的学习资料》，相比之下，普通 ZIP 的加密简直像层窗户纸，zip格式下是可以看到文件列表的。&lt;/p&gt;
+&lt;h3 id="五-甚至考虑到了艾字节以后"&gt;五、 甚至考虑到了“艾字节”以后
+&lt;/h3&gt;&lt;p&gt;7z 的设计非常超前：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;理论上限&lt;/strong&gt;：支持最大 16EB（艾字节）的文件。&lt;del&gt;虽然你这辈子可能都见不到这么大的硬盘&lt;/del&gt;，但至少不用担心格式过时。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;乱码终结者&lt;/strong&gt;：完美支持 Unicode，再也不会出现换台电脑解压文件名就变成“锟斤拷”的情况了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="无冕之王的软肋它也不是完美的"&gt;“无冕之王”的软肋：它也不是完美的
+&lt;/h3&gt;&lt;p&gt;当然，吹了这么多，7z 也有让人想吐槽的地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原生兼容性&lt;/strong&gt;：Windows 和 macOS 的文件管理器居然还没原生支持它，你得手动装个软件（比如 7-Zip 或 Bandizip）才能打开。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;吃资源&lt;/strong&gt;：开启最高压缩模式时，它会疯狂占用内存和 CPU，你的风扇可能会像直升机一样起飞。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="总结我该选谁"&gt;总结：我该选谁？
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;追求极致体积、备份代码、发敏感文件&lt;/strong&gt;：闭眼选 &lt;strong&gt;7z&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;要把文件发给电脑小白、追求最大兼容性&lt;/strong&gt;：还是老老实实选 &lt;strong&gt;ZIP&lt;/strong&gt; 吧。&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>告别支付失败！现版本最强外币卡测评</title><link>https://blog.onani0721.top/p/%E5%91%8A%E5%88%AB%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5%E7%8E%B0%E7%89%88%E6%9C%AC%E6%9C%80%E5%BC%BA%E5%A4%96%E5%B8%81%E5%8D%A1%E6%B5%8B%E8%AF%84/</link><pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E5%91%8A%E5%88%AB%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5%E7%8E%B0%E7%89%88%E6%9C%AC%E6%9C%80%E5%BC%BA%E5%A4%96%E5%B8%81%E5%8D%A1%E6%B5%8B%E8%AF%84/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E5%91%8A%E5%88%AB%E6%94%AF%E4%BB%98%E5%A4%B1%E8%B4%A5%E7%8E%B0%E7%89%88%E6%9C%AC%E6%9C%80%E5%BC%BA%E5%A4%96%E5%B8%81%E5%8D%A1%E6%B5%8B%E8%AF%84/MCB.jpg" alt="Featured image of post 告别支付失败！现版本最强外币卡测评" /&gt;&lt;p&gt;最近真的是忙到飞起，期中考试像一座大山一样压过来，博客都长草好久了。好在考得还不错，总算能喘口气了，赶紧来和大家分享我最近挖到的一个“神仙好物”——&lt;strong&gt;招商银行万事达借记卡&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果你也和我一样，曾被某些银行卡糟糕的海外支付体验折磨得苦不堪言，那这篇文章你一定要看完！&lt;/p&gt;
+&lt;h4 id="一段不堪回首的拒付往事"&gt;&lt;strong&gt;一段不堪回首的“拒付”往事&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;故事要从我的上一张卡说起——一张中国银行的VISA借记卡。&lt;/p&gt;
+&lt;p&gt;当初为了办下它，未成年的我和柜员可以说是“斗智斗勇”，反复沟通，甚至最后投诉到总行才勉强办下来。本以为一切麻烦都结束了，没想到真正的麻烦才刚刚开始。&lt;/p&gt;
+&lt;p&gt;这张卡简直就是新一代的“拒付王”！在Google Play付款还算顺利，但一旦遇到Bookwalker、Pixiv、Mora这类国外电商平台，它就彻底罢工，要么绑不上，要么绑上了付不了款，连PayPal都对它摇头。那种看到喜欢的东西却无法下单的无力感，真的太糟糕了。&lt;/p&gt;
+&lt;h4 id="山重水复寻找一张完美的替代卡"&gt;&lt;strong&gt;山重水复：寻找一张完美的替代卡&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;我下定决心，一定要换掉这张卡。我的目标很明确：一张申请方便、泛用性广的外币借记卡。&lt;/p&gt;
+&lt;p&gt;然而，在研究过程中我发现，国有四大行里，除了体验不佳的中行，似乎都很难找到适合我的外币借记卡，大多是信用卡。于是，我把目光转向了服务和产品更灵活的股份制银行。&lt;/p&gt;
+&lt;p&gt;在查阅了卡粉频道、MZ金融攻略、知乎以及各大论坛的大量资料和帖子后，一张卡脱颖而出，那就是我们今天的主角——&lt;strong&gt;招商银行万事达借记卡&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id="柳暗花明为什么我吹爆招行万事达"&gt;&lt;strong&gt;柳暗花明：为什么我吹爆招行万事达？&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;这张卡到底神在哪里？让我给你一一道来：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;超高泛用性&lt;/strong&gt;：如丝般顺滑！从办好到现在，我还没遇到过一次拒付，某些平台也可通过套壳支付（googleplay，paypal，amazonpay）。它支持3D验证（3DS），外币消费，人民币入账，汇率按招行当天的来，非常方便。你甚至可以像信用卡一样将它绑定在某些平台上。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;成本几乎为零&lt;/strong&gt;：作为一张普卡，它没有年费！不需要强制设为一类卡！对于我们学生党来说，简直是零成本拥有的最佳选择。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对未成年人超友好&lt;/strong&gt;：这是最让我惊喜的一点！周日自己带着身份证就去办了。柜员姐姐态度超好，听说我用来海淘，就带我到VTM机上办理了，全程不到10分钟，丝滑下卡！&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;办理便捷，一步到位&lt;/strong&gt;：在VTM机上，开卡、绑定手机号等操作一气而成，非常方便。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="一些你需要知道的小细节"&gt;&lt;strong&gt;一些你需要知道的“小细节”&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;当然，没有一张卡是绝对完美的，这张卡也有一些针对我们未成年用户的“限制”：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;额度限制&lt;/strong&gt;：默认的每日消费限额是2000元，三个月后可以申请提升到5000元，成年后还能再提。不过对于日常使用来说，完全足够了。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网银功能&lt;/strong&gt;：未成年用户开通网上银行有的地方容易有的地方难。不过，这张卡的核心价值在于它的海外支付能力，只要能通过卡号+CVV码付款就足够了。（P.S. 据说可以通过投诉电话强开，但这次的柜员姐姐态度太好了，我实在不忍心哈哈。）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;顺带一提，在办完万事达卡后，我又被一张高颜值的哔哩哔哩花嫁联名卡吸引，也当场拿下了。办理过程同样顺利。&lt;/p&gt;
+&lt;h4 id="总结当之无愧的top级外币神卡"&gt;&lt;strong&gt;总结：当之无愧的TOP级外币神卡&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;总而言之，如果你正在寻找一张办理门槛低、使用成本少、支付成功率高、对未成年人友好的外币借记卡，那么招商银行这张万事达借记卡，绝对是当下最值得考虑的TOP级选择。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;参考文献&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;卡粉频道 (&lt;a class="link" href="https://t.me/DocOfCard" target="_blank" rel="noopener"
+&gt;https://t.me/DocOfCard&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;encmasuta频道 (&lt;a class="link" href="https://t.me/encmasuta" target="_blank" rel="noopener"
+&gt;https://t.me/encmasuta&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MZ金融攻略 (&lt;a class="link" href="https://charliezane.site" target="_blank" rel="noopener"
+&gt;https://charliezane.site&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;知乎银行卡专栏&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;小黑盒相关帖子&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;L站相关帖子&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>当故事落下帷幕</title><link>https://blog.onani0721.top/p/%E5%BD%93%E6%95%85%E4%BA%8B%E8%90%BD%E4%B8%8B%E5%B8%B7%E5%B9%95/</link><pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E5%BD%93%E6%95%85%E4%BA%8B%E8%90%BD%E4%B8%8B%E5%B8%B7%E5%B9%95/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E5%BD%93%E6%95%85%E4%BA%8B%E8%90%BD%E4%B8%8B%E5%B8%B7%E5%B9%95/Ambitious%20mission.jpg" alt="Featured image of post 当故事落下帷幕" /&gt;&lt;p&gt;昨天清晨5点到第二天凌晨，我将SAGA社的《Ambitious Mission》本篇连同两部FD一并通关。但当STAFF列表滚动完毕，一切归于平静时，一股巨大的空虚感瞬间将我包围。&lt;/p&gt;
+&lt;p&gt;不过，今天我并不打算分享游戏的通关感想（最近快开学了）。我想聊聊一个许多同好都体验过的共同感受：为什么当我们一口气追完一部动漫、读完一本轻小说或者打通一款游戏后，心中会涌起一股难以言喻的“失落感”？&lt;/p&gt;
+&lt;h2 id="失落感的背后一场名为后系列抑郁的心理现象"&gt;失落感的背后：一场名为“后系列抑郁”的心理现象
+&lt;/h2&gt;&lt;p&gt;这种感觉并非矫情，在心理学上，它有一个专门的术语——后系列抑郁（Post-Series Depression, PSD）。当我们完全沉浸于一个虚构的世界后，故事的完结会带来一种类似于哀悼的复杂情绪，这种现象在二次元这类能提供深度沉浸体验的作品上尤为明显。&lt;/p&gt;
+&lt;p&gt;这种失落感的根源，在于我们与虚构世界斩断的情感纽带。在欣赏作品时，我们不仅仅是旁观者，更会将自己的情感投射到角色身上，与他们一同欢笑，一同落泪。这种沉浸式的共鸣，让我们与那个世界建立了深厚的情感联结。当故事结束，这条纽带被突然中断，就如同与一位朝夕相处的朋友告别，失落感油然而生。&lt;/p&gt;
+&lt;p&gt;同时，二次元作品也为我们构建了一个完美的“避风港”，一个可以暂时逃离现实压力与烦恼的异想世界。在这里，我们可以抛开一切，尽情冒险。当作品完结，我们被迫从这个舒适的港湾中“登出”，重新面对现实，巨大的心理落差自然会加剧失落。&lt;/p&gt;
+&lt;p&gt;从生理层面来看，这还与我们大脑的奖励机制有关。精彩纷呈的故事情节会持续刺激我们的大脑，使其释放带来愉悦感的神经递质——多 paff 胺。一口气“肝”完一部作品，就如同让大脑进行了一场多巴胺的狂欢。当这场狂欢戛然而止，刺激源消失，多巴胺水平骤然下降，我们便会体验到一种类似“戒断反应”的空虚与低落。&lt;/p&gt;
+&lt;h2 id="如何消除这种失落感呢"&gt;如何消除这种失落感呢？
+&lt;/h2&gt;&lt;p&gt;最直接的方法，是做点别的事来转移注意力。从虚拟世界抽离后，立刻投身于一件需要专注的现实事物中，无论是整理房间、出门运动，还是玩一局快节奏的游戏，都能有效中断负面情绪的蔓延。&lt;/p&gt;
+&lt;p&gt;一种更具想象力的方式，是进行自我安慰式的心理暗示。你可以说服自己：那个世界的故事并没有真正结束，角色们依旧在他们的世界里生活、冒险、成长。只不过，我们作为“观察者”的视角，暂时关闭了而已。他们的故事还在继续，这能极大地抚慰我们心中的失落。&lt;/p&gt;
+&lt;p&gt;当然，也有不少人信奉“以毒攻毒”的法则——立即投入到下一个故事当中去。当一部作品完结带来的多巴胺断崖让你难以忍受时，迅速开启另一部作品，用新的情感寄托来填补旧的空缺，不失为一种简单粗暴却有效的方法。&lt;/p&gt;
+&lt;p&gt;最后，还有一种略显极端的选择：主动回避。如果你发现自己总是被这类故事深深影响，甚至干扰到了现实生活，那么未来在选择作品时，可以有意识地避开那些代入感过强、与现实联系紧密、容易触动深层情感的故事。这是一种自我保护，虽然可能会错过一些佳作，但能换来情绪的稳定。&lt;/p&gt;
+&lt;h2 id="尾声"&gt;尾声
+&lt;/h2&gt;&lt;p&gt;一口气看完一部作品所带来的强烈失落，本质上源于我们与那个世界的深刻联结被突然切断。无论你选择何种方式去应对，请记住，这种空虚本身，也恰恰证明了那部作品曾带给你多么巨大的感动和快乐。&lt;/p&gt;
+&lt;p&gt;所以，如果你也曾被这种“完结后的空虚”所困扰，不必过分担忧。这恰恰证明了那部作品曾带给你多么巨大的感动和快乐。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;至于《Ambitious Mission》的感想？我们下次再聊。&lt;/p&gt;</description></item><item><title>《さくらの雲＊スカアレットの恋》玩后感</title><link>https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/</guid><description>&lt;img src="https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/cover.jpeg" alt="Featured image of post 《さくらの雲＊スカアレットの恋》玩后感" /&gt;&lt;h1 id="さくらの雲スカアレットの恋玩后感"&gt;《さくらの雲＊スカアレットの恋》玩后感
+&lt;/h1&gt;&lt;h2 id="剧透警告"&gt;剧透警告
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi1.jpg"
+width="1368"
+height="770"
+srcset="https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi1_hu_6bce0d8ad851864e.jpg 480w, https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi1_hu_7f7c9f4d6256ecbe.jpg 1024w"
+loading="lazy"
+alt="Sakura_no_Kumo&amp;Scarlet_no_Koi1"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;h2 id="通关概况"&gt;通关概况
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;游戏线路：远子、莲、梅丽莎、所长四位女主，一周目为共通线强制Bad Ending，之后四条线分别对应四个周目，顺序不可调换&lt;/li&gt;
+&lt;li&gt;游玩时长：30h&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="感想"&gt;感想
+&lt;/h2&gt;&lt;p&gt;怎么说呢，通关《樱云》这部所谓的剧情作之后，我心情其实挺复杂的。一方面我特想给它吹爆，另一方面我又想揪着编剧的领子问他到底在想啥。&lt;/p&gt;
+&lt;p&gt;有一说一，这游戏的皮相是真的顶。那股子大正时代的风味儿，混着点穿越和悬疑，一下子就把格调拉满了，在现在一堆校园废萌gal里简直是一股清流。而且人设做得太好了，尤其是所长，我跟你说，这个角色塑造得也太神了！完全不按套路出牌，不是那种常见的姐姐系或者青梅系，就那么独一份儿，又飒又可靠，简直完美。就冲着这个背景和所长，我都觉得这游戏值了。&lt;/p&gt;
+&lt;p&gt;它确实有那么几个瞬间，让我觉得“卧槽，神作！”。比如梅丽莎线那个列车上的推理案，悬疑气氛拉满，解谜过程也挺像那么回事儿，最后揭露梅丽莎能力的时候，我整个人都惊了。还有最后所长线的大决战，抛开逻辑不谈，那场面确实够燃，最后的叙述性诡计也给了我个大惊喜。&lt;/p&gt;
+&lt;p&gt;但问题就出在这，这游戏越是把这些优点拍我脸上，我就越对它那烂到骨子里的内核感到愤怒。&lt;/p&gt;
+&lt;p&gt;这编剧冬茜，绝对是“文青病”入脑了。为了他那个所谓的“首尾呼应”和自我感动的悲剧结局，故事的逻辑性简直是稀烂。就拿梅丽莎线那个案子来说，明明车上还有一大堆乘务员和厨子，他非得把凶手范围锁死在乘客里。这种为了方便剧情强行设定的地方，游戏里多得数不清。&lt;/p&gt;
+&lt;p&gt;最离谱的是那个所谓的“历史误差”判定。凭什么反派加藤搞点事，历史就受不了了，我就回不去了；到我这儿，救人、阻止恐怖袭击、甚至直接把未来从世界大战扭转成和平世界，这么大的改变，系统却一点事没有，这也太双标了吧。&lt;/p&gt;
+&lt;p&gt;最后那个结局，更是为了悲剧而悲剧，强行喂刀。主角为什么要回去，铺垫了半天也没个站得住脚的理由，就硬生生为了一个所谓的“约定”、为了那份“浪漫”就走了，看得我莫名其妙。&lt;/p&gt;
+&lt;p&gt;还好当初听了劝，玩这游戏的时候基本没带脑子，我才能在它这一堆逻辑BUG里，尽可能地去享受它的美术、它的氛围和它的人物。&lt;/p&gt;
+&lt;p&gt;总的来说，这部720p的“剧情作”有些差强人意，bgm上7.7分的评价也有些虚高了，剧情打得过9nine的评价也有些过了，还有什么剧情锁、一周目强行be、hcg集中爆发等等，我也懒得吐槽了，但你真要问我它值不值得一玩的话，我肯定还是会推荐的。虽然有许多槽点，但是这毕竟只是游戏，没必要这么较劲，正经人谁会来管二次元的事啊（（（&lt;/p&gt;
+&lt;p&gt;最后吐槽一下为什么阿良良木不能推啊！
+&lt;img src="https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi2.jpg"
+width="800"
+height="450"
+srcset="https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi2_hu_fe3398540f133294.jpg 480w, https://blog.onani0721.top/p/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E9%9B%B2%E3%82%B9%E3%82%AB%E3%82%A2%E3%83%AC%E3%83%83%E3%83%88%E3%81%AE%E6%81%8B%E7%8E%A9%E5%90%8E%E6%84%9F/Sakura_no_Kumo&amp;amp;Scarlet_no_Koi2_hu_384276a2df0fea97.jpg 1024w"
+loading="lazy"
+alt="Sakura_no_Kumo&amp;Scarlet_no_Koi2"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;</description></item><item><title>ZTZ-99</title><link>https://blog.onani0721.top/p/ztz-99/</link><pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate><guid>https://blog.onani0721.top/p/ztz-99/</guid><description>&lt;img src="https://blog.onani0721.top/p/ztz-99/cover.jpg" alt="Featured image of post ZTZ-99" /&gt;&lt;p&gt;&lt;strong&gt;99式主战坦克&lt;/strong&gt;（英语：&lt;strong&gt;Type 99 Main Battle Tank&lt;/strong&gt;），是ZTZ-99式主战坦克（《全军武器装备命名规定》汉语拼音：&lt;strong&gt;Z&lt;/strong&gt;hǔ &lt;strong&gt;T&lt;/strong&gt;ǎn &lt;strong&gt;Z&lt;/strong&gt;huāng的缩写）的简称，是中国人民解放军陆军的新一代主战坦克。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;属性&lt;/th&gt;
+&lt;th style="text-align: left"&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;中文名&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;99式主战坦克&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;外文名&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;Type 99 Main Battle Tank&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;前型/级&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;96式主战坦克&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;次型/级&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;99A主战坦克&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;服役时间&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;1999年&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&lt;strong&gt;国家&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;中华人民共和国&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id="研发背景"&gt;研发背景
+&lt;/h3&gt;&lt;p&gt;20世纪80年代以来，以德制“豹-2”坦克、美国M1A2等为代表的第三代坦克开始引领世界主战坦克的潮流。此时，中国坦克的整体性能却仍处于第二代的水平，其防护力、机动力、电子系统性能等与世界先进坦克存在很大差距。1989年，我国决定在借鉴苏联T-72坦克技术的基础上，充分吸纳西方更先进的技术，以中国兵器工业集团第201研究所为主研制新型坦克。&lt;/p&gt;
+&lt;h3 id="发展历程"&gt;发展历程
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1992年&lt;/strong&gt;：北方工业公司617厂推出了4辆第三代坦克原型车。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1996年5月&lt;/strong&gt;：第三代坦克改进型原型车移交给军方进行试验，并将该坦克命名为ZTZ-99式主战坦克。&lt;/li&gt;
+&lt;li&gt;从此，99式主-战坦克正式定型并投入生产。&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
