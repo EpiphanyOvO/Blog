@@ -10,6 +10,8 @@ menu:
             icon: timer
 ---
 # Update History 更新历史
+## Ver.26/7/16
+- 更换了域名
 ## Ver.26/6/19
 - 现在更新历史采用倒序
 ## Ver.26/6/15
