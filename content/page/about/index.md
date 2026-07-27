@@ -45,7 +45,7 @@ menu:
 
 ### 联系我
 如果你想与我交流，或者只是打个招呼，可以通过以下方式找到我：
-*   **邮箱:** epiphany0721@foxmail.com
+*   **邮箱:** lfklnccrb@mozmail.com
 
 ---
 
