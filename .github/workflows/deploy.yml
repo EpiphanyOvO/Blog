@@ -1,0 +1,38 @@
+name: Deploy to Github Pages
+
+on:
+  push:
+    branches: [master]
+
+env:
+  # 解决 Node.js 版本警告
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Hugo 🎈
+        uses: peaceiris/actions-hugo@v3
+        with:
+          # 使用稳定版本
+          hugo-version: "0.134.0" 
+          extended: true
+
+      - name: Build 🏗️
+        run: |
+          hugo --minify --gc
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public
+          clean: true
+          single-commit: true
