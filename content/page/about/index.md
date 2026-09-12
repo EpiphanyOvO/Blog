@@ -7,7 +7,7 @@ menu:
     main:
         weight: 2
         params: 
-            icon: about
+            icon: sus
 ---
 # 🛸 关于我们 | The Co-Authors
 
