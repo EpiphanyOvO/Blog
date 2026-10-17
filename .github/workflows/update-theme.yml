@@ -28,7 +28,7 @@ jobs:
         # --- 关键修改 2：升级到 v3 版本以原生支持新版 Node ---
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 0.123.8
+          hugo-version: latest
           extended: true
 
       - name: Update theme
