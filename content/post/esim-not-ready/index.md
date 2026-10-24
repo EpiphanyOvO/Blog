@@ -1,5 +1,5 @@
 ---
-title: "手机不认我的eSIM卡了：一个\\\"0\\\"引发的惨案"
+title: "手机不认我的eSIM卡了：一个\"0\"引发的惨案"
 description: "记录一次小米13上eUICC卡被系统判定为「未插入SIM卡」的完整排查历程，从换数据线一路查到 telephony.db 里的一个标志位"
 date: "2026-10-24"
 tags:
@@ -9,6 +9,8 @@ tags:
 categories:
      - "技术"
 ---
+
+
 
 
 
