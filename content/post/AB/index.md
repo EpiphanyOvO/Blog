@@ -1,7 +1,10 @@
 ---
 title: 当故事落下帷幕
+slug: "when-the-story-ends"
+aliases: ["/p/当故事落下帷幕/"]
 date: 2025-08-30
 image: Ambitious mission.jpg
+toc: true
 description: 深入聊聊那种名为“后系列抑郁”的奇妙体验
 tags:
      - 游戏

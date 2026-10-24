@@ -60,9 +60,11 @@ content/post/my-post/
 ```yaml
 ---
 title: 我的新文章
+slug: my-new-post
 date: 2026-06-13
 description: 这是一篇测试文章
 image: cover.jpg
+toc: true
 tags:
   - Hugo
   - Blog
@@ -70,8 +72,31 @@ categories:
   - Notes
 ---
 
+## 一级小节
+
 这里是正文内容。
 ```
+
+### 必须写 slug
+
+Hugo 在 page bundle（`index.md`）里如果没写 `slug`，`:slug` 会退化成标题生成的 slug，
+中文标题最终变成 `/p/%E6%89%8B%E6%9C%BA...` 这种一长串百分号，分享出去又长又不好看。
+所以每篇文章都要显式写一个 ASCII 的 `slug`（`permalinks.toml` 里 post 用的是 `/p/:slug/`）。
+
+改 `slug` 会换掉已经分享出去的旧链接，所以顺手把旧地址写进 `aliases`，Hugo 会生成跳转页：
+
+```yaml
+slug: phone-esim-not-ready
+aliases: ["/p/手机不认我的esim卡了一个0引发的惨案/"]
+```
+
+漏写 `slug` 时构建日志里会出现 `WARN  post "标题" 没有设置 slug …` 的提醒（见 `layouts/partials/head/custom.html`）。
+
+### 标题从 ## 起，目录才好看
+
+`markup.toml` 里 `tableOfContents.startLevel = 2`，也就是目录从二级标题开始收集。
+正文里不要再写 `#` 一级标题（页面标题本身就是 h1），小节统一用 `##`、子小节用 `###`，
+需要目录的长文再加 `toc: true`。
 
 ## Create a New Page
 
@@ -217,11 +242,38 @@ privateCiphertext: "base64_ciphertext_here"
 这是一段普通文字，但这里有 <span class="spoiler">一个隐藏内容</span>。
 ```
 
+## 分享缩略图（og:image）
+
+- 文章写了 `image`，Stack 会把同一张图用作文章头图、列表缩略图和 `og:image` / `twitter:image`
+- 没写 `image` 的页面（首页、about、archives、部分文章）统一用默认图：
+  `config/_default/params.toml` 里的 `[defaultImage.opengraph]` → `assets/img/opengraph.png`（1200×630）
+- `layouts/partials/head/opengraph/provider/` 下覆盖了主题模板，把属性拼装从 `printf "%q"` 换成
+  常规写法，否则标题里带英文引号时（例如 `一个"0"引发的惨案`）会把 `content="…"` 提前截断
+
+## 联系方式（邮箱防混淆）
+
+Cloudflare 的 Scrape Shield 会把页面里的明文邮箱替换成 `[email protected]` 占位符，
+在禁用 JS 的环境里访客只能看到这串东西。仓库里用一个短代码绕开它：
+
+```markdown
+*   **邮箱:** {{< email "someone@example.com" >}}
+```
+
+`layouts/shortcodes/email.html` 会做三件事：
+
+1. HTML 源码里不出现完整明文邮箱，也不出现 `mailto:`，CF 的边缘脚本无从下手；
+2. 用户名与域名分别 base64 后放进 `data-*`，由带 `data-cfasync="false"` 的内联脚本解码成
+   可点击的 `mailto:` 链接和「复制」按钮（不会被 Rocket Loader 延后）；
+3. `<noscript>` 里给出拆开的可读文本，禁用 JS 时依然能看、能手动复制。
+
+如果想彻底不折腾，也可以在 Cloudflare 面板关掉 Scrape Shield → Email Address Obfuscation。
+
 ## Site Configuration
 
 主要配置文件位于 `config/_default/`：
 
-- `config.toml`: 站点基础配置
+- `config.toml`: 站点基础配置（`baseurl` 用中文域名的 punycode 写法 `blog.xn--cdus75j.top`，
+  直接写 `blog.顿悟.top` 会让 Hugo 把 host 也百分号编码，`canonical` / `og:image` 会变成抓不到的地址）
 - `params.toml`: 主题参数、组件、评论系统等
 - `menu.toml`: 社交链接与菜单
 - `markup.toml`: Markdown 渲染、代码高亮、目录等

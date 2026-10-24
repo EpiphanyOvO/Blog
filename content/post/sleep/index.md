@@ -1,5 +1,7 @@
 ---
 title: 睡眠恐惧
+slug: "fear-of-sleep"
+aliases: ["/p/睡眠恐惧/"]
 date: 2026-04-05
 tags:
      - 哲学
@@ -9,7 +11,7 @@ categories:
 
 <span class="spoiler">这是一篇关于哲学思考的诗，可能会引起不适，请谨慎阅读:)</span>
 
-### “睡眠恐惧”
+## “睡眠恐惧”
 
 你们可曾思考过，
 睡眠死亡是否联系？
@@ -39,7 +41,7 @@ categories:
 是不是与梦境一般？
 
 
-# ————END————
+## ————END————
 
 
 

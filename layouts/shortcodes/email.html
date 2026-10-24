@@ -1,0 +1,81 @@
+{{- /*
+  输出一个「对 Cloudflare Email Obfuscation 免疫」的邮箱。
+
+  用法（正文里）：
+      {{< email "someone@example.com" >}}
+
+  原理：
+  1. HTML 源码里不出现完整的明文邮箱，也不出现 mailto:（CF 的边缘脚本因此无从下手）；
+  2. 用户名 / 域名分别 base64 后放进 data-* 属性，由内联 JS（带 data-cfasync="false"，
+     避免被 Rocket Loader 延后）在浏览器里解码成可点击的 mailto 链接 + 复制按钮；
+  3. <noscript> 里给出拆成「用户名 / @ / 域名」的可读文本，禁用 JS 的访客也能看和复制。
+*/ -}}
+{{- $addr := strings.TrimSpace (.Get 0) -}}
+{{- $parts := split $addr "@" -}}
+{{- $user := index $parts 0 -}}
+{{- $domain := index $parts 1 -}}
+<span class="email-protect"
+      data-cfasync="false"
+      data-user="{{ $user | base64Encode }}"
+      data-domain="{{ $domain | base64Encode }}">
+    <noscript><span class="email-protect__fallback"><span>{{ $user }}</span>&#64;<span>{{ $domain }}</span></span></noscript>
+</span>
+{{- if not (.Page.Scratch.Get "emailProtectScript") -}}
+{{- .Page.Scratch.Set "emailProtectScript" true -}}
+<script data-cfasync="false">
+(function () {
+    function dec(s) { try { return atob(s); } catch (e) { return ""; } }
+
+    function mount(el) {
+        if (el.getAttribute("data-ready") === "1") { return; }
+        var addr = dec(el.getAttribute("data-user")) + "@" + dec(el.getAttribute("data-domain"));
+        if (addr.indexOf("@") < 1) { return; }
+        el.setAttribute("data-ready", "1");
+        el.textContent = "";
+
+        var link = document.createElement("a");
+        link.className = "email-protect__link";
+        link.href = "mailto:" + addr;
+        link.textContent = addr;
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "email-protect__copy";
+        btn.textContent = "复制";
+        btn.addEventListener("click", function () {
+            function ok() {
+                btn.textContent = "已复制";
+                setTimeout(function () { btn.textContent = "复制"; }, 1500);
+            }
+            function fallback() {
+                var t = document.createElement("textarea");
+                t.value = addr;
+                t.setAttribute("readonly", "");
+                t.style.position = "fixed";
+                t.style.opacity = "0";
+                document.body.appendChild(t);
+                t.select();
+                try { document.execCommand("copy"); ok(); } catch (e) {}
+                document.body.removeChild(t);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(addr).then(ok, fallback);
+            } else {
+                fallback();
+            }
+        });
+
+        el.appendChild(link);
+        el.appendChild(btn);
+    }
+
+    function run() {
+        var els = document.querySelectorAll(".email-protect");
+        for (var i = 0; i < els.length; i++) { mount(els[i]); }
+    }
+
+    run();
+    document.addEventListener("DOMContentLoaded", run);
+})();
+</script>
+{{- end -}}

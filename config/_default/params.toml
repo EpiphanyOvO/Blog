@@ -63,9 +63,10 @@ site = ""
 card = "summary_large_image"
 
 [defaultImage.opengraph]
-enabled = false
-local = false
-src = ""
+# 文章没有 image 前置参数时，用这张图做社交分享缩略图（1200x630）
+enabled = true
+local = true
+src = "img/opengraph.png"
 
 [colorScheme]
 toggle = true

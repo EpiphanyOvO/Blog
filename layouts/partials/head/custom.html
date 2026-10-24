@@ -1,3 +1,7 @@
 {{ if .Params.private }}
     <meta name="robots" content="noindex, nofollow" />
 {{ end }}
+{{- /* 新文章忘了写 slug 时在构建日志里提醒：否则 URL 会退化成中文标题 */ -}}
+{{- if and .IsPage (eq .Section "post") (not .Params.slug) -}}
+    {{- warnf "post %q 没有设置 slug 前置参数，URL 会变成中文标题（%s）" .Title .RelPermalink -}}
+{{- end -}}

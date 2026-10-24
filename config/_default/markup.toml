@@ -12,6 +12,7 @@ block = [['\[', '\]'], ['$$', '$$']]
 inline = [['\(', '\)']]
 
 [tableOfContents]
+# 正文标题统一从 ## 起，目录从 2 级开始收集，最多到 4 级
 endLevel = 4
 ordered = true
 startLevel = 2

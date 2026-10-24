@@ -1,8 +1,11 @@
 ---
 title: "CS2忆往昔"
+slug: "cs2-memories"
+aliases: ["/p/cs2忆往昔/"]
 description: "朋友的CS入坑经历"
 date: "2026-08-26"
 image: "images.jpg"
+toc: true
 tags:
      - "灵光一闪"
 categories:

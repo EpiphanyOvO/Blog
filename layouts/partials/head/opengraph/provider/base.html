@@ -1,0 +1,41 @@
+{{- /* 覆盖 Stack 的 opengraph/base：主题用 printf "%q" 拼属性，
+       标题里带英文引号时（例如 手机不认我的eSIM卡了：一个"0"引发的惨案）
+       会生成 content="...\" 0\"..."，双引号把属性提前截断，社交平台抓到的是残缺标题。
+       这里改成常规的 content="{{ $title }}"，由 Hugo 在属性上下文里做转义（&#34;）。 */ -}}
+{{- $title := partialCached "data/title" . .RelPermalink -}}
+{{- $description := partialCached "data/description" . .RelPermalink -}}
+
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+
+{{- with .Params.locale -}}
+    <meta property="og:locale" content="{{ . }}">
+{{- end -}}
+
+{{- if .IsPage -}}
+    <meta property="article:section" content="{{ .Section | title }}" />
+    {{- range .Params.tags -}}
+        <meta property="article:tag" content="{{ . }}" />
+    {{- end -}}
+{{- end -}}
+
+{{- if .IsPage -}}
+    {{- if not .Date.IsZero -}}
+        <meta property="article:published_time" content='{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}'/>
+    {{- end -}}
+    {{- if not .Lastmod.IsZero -}}
+        <meta property="article:modified_time" content='{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}'/>
+    {{- end -}}
+{{- else -}}
+    {{- if not .Site.Lastmod.IsZero -}}
+        <meta property="og:updated_time" content='{{ .Site.Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}'/>
+    {{- end -}}
+{{- end -}}
+
+{{ $image := partialCached "helper/image" (dict "Context" . "Type" "opengraph") .RelPermalink "opengraph" }}
+{{- if $image.exists -}}
+    <meta property="og:image" content='{{ absURL $image.permalink }}' />
+{{- end -}}
