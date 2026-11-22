@@ -26,7 +26,7 @@ categories:
 
 easyEUICC 里显示得好好的，切换 profile 也提示成功，但手机的状态栏里始终是一个「未插入 SIM 卡」的小图标。设置里点进去看，卡槽 1 直接是灰的。
 
-![easyEUICC 里一切正常，Lebara 显示已启用](easyeuicc.png)
+![easyEUICC 里一切正常，Lebara 显示已启用](easyeuicc.png "w=320")
 
 更气人的是，它之前明明是好的。
 
@@ -169,13 +169,13 @@ MIUI 设置里的「关闭 SIM 卡」，底层调的是 `setUiccApplicationsEnab
 
 也就是说 OMAPI 这条链路是完全通的。
 
-![easyEUICC 自己的兼容性检查，两个卡槽都能读、ISD-R 都能访问](compat-check.png)
+![easyEUICC 自己的兼容性检查，两个卡槽都能读、ISD-R 都能访问](compat-check.png "w=320")
 
 但 Telephony 拒绝激活 UICC 应用，走的是另一条完全独立的路径。两条路径互不关心，一条通不代表另一条通。所以「卡能读出来」和「系统认这张卡」是两件不同的事，我前面有一大半时间都在被这个错觉带着跑。
 
 真正让我绕远路的，是下面这种日志。
 
-![物理卡槽 0 的 OMAPI 通道打不开，最后抛出 EuiccChannelNotFoundException](omapi-log.png)
+![物理卡槽 0 的 OMAPI 通道打不开，最后抛出 EuiccChannelNotFoundException](omapi-log.png "w=420")
 
 看起来像是卡槽坏了、通道断了，但它其实只是 eUICC 里没有可用的 profile 可以激活，跟 SE 通道本身能不能用没关系。
 

@@ -1,0 +1,76 @@
+{{- /*
+  正文图片渲染 —— 覆盖主题（hugo-theme-stack）自带的钩子，只加一件事：宽度。
+
+  写法：把尺寸放在 Markdown 图片的 title 位置
+      ![截图](shot.png "w=45%")    → 按正文栏宽的 45% 显示并居中
+      ![截图](shot.png "w=420")    → 固定 420px（窄屏仍受 max-width:100% 限制）
+  没写 title 的图片保持原来的行为（满栏宽）。
+
+  主题升级时留意：这个文件是主题 layouts/_default/_markup/render-image.html 的副本，
+  如果上游改了图片处理逻辑，需要跟着同步（否则本项目会一直用这份旧逻辑）。
+*/ -}}
+{{- $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) -}}
+{{- $Permalink := .Destination | relURL | safeURL -}}
+{{- $alt := .PlainText | safeHTML -}}
+{{- $Width := 0 -}}
+{{- $Height := 0 -}}
+{{- $Srcset := "" -}}
+
+{{/* 从 title 里解析尺寸标记：w=45% / w=420 / w=420px，其余 title 内容忽略 */}}
+{{- $size := "" -}}
+{{- $title := .Title | default "" -}}
+{{- if hasPrefix $title "w=" -}}
+    {{- $token := index (split $title " ") 0 -}}
+    {{- $value := strings.TrimPrefix "w=" $token -}}
+    {{- $value = strings.TrimSuffix "px" $value -}}
+    {{- if findRE `^[0-9]+(\.[0-9]+)?%?$` $value -}}
+        {{- $size = $value -}}
+        {{- if not (strings.Contains $size "%") -}}
+            {{- $size = printf "%spx" $size -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{/* SVG 和外链图片拿不到宽高，不参与 gallery 布局 */}}
+{{- $galleryImage := false -}}
+
+{{- if $image -}}
+	{{- $notSVG := ne (path.Ext .Destination) ".svg" -}}
+	{{- $Permalink = $image.RelPermalink -}}
+
+	{{- if $notSVG -}}
+		{{- $Width = $image.Width -}}
+		{{- $Height = $image.Height -}}
+		{{- $galleryImage = true -}}
+
+		{{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
+			{{- $small := $image.Resize `480x` -}}
+			{{- $big := $image.Resize `1024x` -}}
+			{{- $Srcset = printf `%s 480w, %s 1024w` $small.RelPermalink $big.RelPermalink -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+
+{{- $classes := slice -}}
+{{- if $galleryImage }}{{ $classes = $classes | append "gallery-image" }}{{ end -}}
+{{- if $size }}{{ $classes = $classes | append "img-sized" }}{{ end -}}
+
+<img src="{{ $Permalink }}"
+	{{ with $Width }}width="{{ . }}"{{ end }}
+	{{ with $Height }}height="{{ . }}"{{ end }}
+	{{ with $Srcset }}srcset="{{ . }}"{{ end }}
+	loading="lazy"
+	{{ with $alt }}
+		alt="{{ . }}"
+	{{ end }}
+	{{ with $size }}
+		style="width: {{ . }}"
+	{{ end }}
+	{{ if $classes }}
+		class="{{ delimit $classes " " }}"
+	{{ end }}
+	{{ if $galleryImage }}
+		data-flex-grow="{{ div (mul $image.Width 100) $image.Height }}"
+		data-flex-basis="{{ div (mul $image.Width 240) $image.Height }}px"
+	{{ end }}
+>
