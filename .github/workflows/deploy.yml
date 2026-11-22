@@ -44,6 +44,20 @@ jobs:
           hugo-version: "latest"
           extended: true
 
+      # Hugo 0.170 起 extended 版不再自带 libsass，SCSS 必须走 Dart Sass，
+      # 否则构建会报 "no Dart Sass binary found in $PATH"
+      - name: Setup Dart Sass
+        run: |
+          set -euo pipefail
+          VERSION=$(curl -fsSL https://api.github.com/repos/sass/dart-sass/releases/latest \
+            | sed -n 's/.*"tag_name": "\([^"]*\)".*/\1/p' | head -1)
+          curl -fsSL -o /tmp/dart-sass.tar.gz \
+            "https://github.com/sass/dart-sass/releases/download/${VERSION}/dart-sass-${VERSION}-linux-x64.tar.gz"
+          mkdir -p "$HOME/dart-sass"
+          tar -xzf /tmp/dart-sass.tar.gz -C "$HOME/dart-sass" --strip-components=1
+          echo "$HOME/dart-sass" >> "$GITHUB_PATH"
+          "$HOME/dart-sass/sass" --version
+
       - name: Build
         run: hugo --minify --gc
 
